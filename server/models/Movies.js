@@ -13,6 +13,10 @@ const moviesSchema = new Schema({
     },
     profit: {//boxoffice
         type: String,
+        required: true
+    },
+    year: {
+        type: Number
     }
 });
 
