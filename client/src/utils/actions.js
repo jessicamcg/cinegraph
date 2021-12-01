@@ -1,3 +1,3 @@
-export const SAVE_BOOK = 'SAVE_BOOK';
+export const SAVE_MOVIE = 'SAVE_MOVIE';
 
-export const REMOVE_BOOK = 'REMOVE_BOOK';
+export const REMOVE_MOVIE = 'REMOVE_MOVIE';
