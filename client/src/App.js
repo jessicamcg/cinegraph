@@ -1,9 +1,11 @@
-import './App.css';
+import { CssBaseline } from "@mui/material";
+import LoginOrSignupForm from './components/loginForm';
 
 function App() {
   return (
     <div>
-      <h1>hello</h1>
+      <CssBaseline/>
+      <LoginOrSignupForm/>
     </div>
   );
 }
