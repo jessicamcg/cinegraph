@@ -11,10 +11,10 @@ const typeDefs = gql`
 
     type Movies {
         _id: ID
-        title: String
-        rating: String
-        profit: String
-        year: String
+        Title: String
+        Rating: String
+        BoxOffice: String
+        Year: String
         imdbID: String
     }
     
@@ -37,10 +37,10 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         saveMovie(
             _id: ID,
-            title: String,
-            rating: Int,
-            profit: Int,
-            year: Int,
+            Title: String,
+            Rating: Int,
+            BoxOffice: Int,
+            Year: Int,
             imdbID: String,
         ): Movies
         removeMovie(imdbID: String!): Movies
@@ -52,8 +52,3 @@ const typeDefs = gql`
 
 
 module.exports = typeDefs;
-
-// type Mutation {
-//     addUser(username: String!, email: String!, password: String!): Auth
-//     login(email: String!, password: String!): Auth
-// }
