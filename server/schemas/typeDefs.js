@@ -15,6 +15,7 @@ const typeDefs = gql`
         rating: Int
         profit: Int
         year: Int
+        imdbID: String
     }
     
     type Auth {
@@ -32,6 +33,15 @@ const typeDefs = gql`
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
+        saveMovie(
+            _id: ID,
+            title: String,
+            rating: Int,
+            profit: Int,
+            year: Int,
+            imdbID: String,
+        ): Movies
+        removeMovie(imdbID: String!): Movies
     }
 `
 

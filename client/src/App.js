@@ -1,5 +1,5 @@
 import { CssBaseline } from "@mui/material";
-import LoginOrSignupForm from './components/loginForm';
+import LoginOrSignupForm from './components/signUpForm';
 import {
   ApolloClient,
   InMemoryCache,
@@ -7,7 +7,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
