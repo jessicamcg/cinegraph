@@ -12,9 +12,9 @@ const typeDefs = gql`
     type Movies {
         _id: ID
         title: String
-        rating: Int
-        profit: Int
-        year: Int
+        rating: String
+        profit: String
+        year: String
         imdbID: String
     }
     
