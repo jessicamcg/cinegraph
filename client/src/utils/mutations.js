@@ -30,14 +30,23 @@ export const ADD_USER = gql`
   }
 `;
 
-// export const SAVE_MOVIE = gql`
-//   mutation saveMovie (
+export const SAVE_MOVIE = gql`
+  mutation saveMovie ($movies: String) {
+      saveMovie(movies: $movies) {
+        movies {
+            _id
+            title
+            rating
+            profit
+            year
+            imdbID
+        }
+      }
+  }
+`
 
-//   )
-// `
-
-// export const REMOVE_MOVIE = gql`
-//     mutation removeMovie (
-
-//     )
-// `
+export const REMOVE_MOVIE = gql`
+    mutation removeMovie ($imdbID: String) {
+        removeMovie ( where:{imdbID: $imdbID} )
+    }
+`

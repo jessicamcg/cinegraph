@@ -16,7 +16,7 @@ const moviesSchema = new Schema({
         required: true
     },
     year: {
-        type: Number
+        type: String
     },
     imdbID: {
         type: String
