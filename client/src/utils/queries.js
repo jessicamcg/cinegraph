@@ -12,6 +12,7 @@ export const QUERY_USER = gql`
         rating
         profit
         year
+        imdbID
       }
     }
   }
@@ -25,6 +26,7 @@ export const QUERY_MOVIES = gql`
         rating
         profit
         year
+        imdbID
       }
   }
 `;
@@ -41,6 +43,7 @@ export const QUERY_ME = gql`
         rating
         profit
         year
+        imdbID
       }
     }
   }

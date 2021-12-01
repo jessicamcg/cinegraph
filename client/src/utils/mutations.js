@@ -29,3 +29,15 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+// export const SAVE_MOVIE = gql`
+//   mutation saveMovie (
+
+//   )
+// `
+
+// export const REMOVE_MOVIE = gql`
+//     mutation removeMovie (
+
+//     )
+// `

@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const { Movie, User } = require('../models')
 
 const resolvers = {
     Query: {
@@ -21,24 +22,41 @@ const resolvers = {
             const user = await User.create({ username, email, password });
             const token = signToken(user);
             return { token, user };
-          },
-          login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
+        },
+        login: async (parent, { email, password }) => {
+          const user = await User.findOne({ email });
+    
+          if (!user) {
+            throw new AuthenticationError('No user found with this email address');
+          }
       
-            if (!user) {
-              throw new AuthenticationError('No user found with this email address');
-            }
+          const correctPw = await user.isCorrectPassword(password);
       
-            const correctPw = await user.isCorrectPassword(password);
+          if (!correctPw) {
+             throw new AuthenticationError('Incorrect credentials');
+          }
       
-            if (!correctPw) {
-              throw new AuthenticationError('Incorrect credentials');
-            }
+          const token = signToken(user);
       
-            const token = signToken(user);
-      
-            return { token, user };
-          },
+          return { token, user };
+        },
+        saveMovie: async () => {
+          const savedMovie = await Movie.create(args);
+            return savedMovie;
+        },
+        removeMovie: async (parent, { imdbID }, context) => {
+          if (context.user) {
+              return Movie.findOneAndUpdate(
+                { _id: imdbID },
+                {
+                  $pull: {
+                    movies: { _id: imdbID },
+                  },
+                },
+                { new: true }
+              );
+          }
+        }
     }
 }
 
