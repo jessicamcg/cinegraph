@@ -2,15 +2,32 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
 
 export default function LoginOrSignupForm() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [addUser, { error }] = useMutation(ADD_USER);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Username:", username, "Email:", email, "Password:", password);
+        console.log(
+            "Username:",
+            username,
+            "Email:",
+            email,
+            "Password:",
+            password
+        );
+        try {
+            const {data} = addUser({
+                variables: {}
+            })
+        } catch (error) {
+            
+        }
     };
     return (
         <Box
