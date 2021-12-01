@@ -1,16 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Button from '@mui/material/Button'
+import Button from "@mui/material/Button";
 
 export default function LoginOrSignupForm() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log('Email:', email, "Password:", password)
-    }
+        e.preventDefault();
+        console.log("Username:", username, "Email:", email, "Password:", password);
+    };
     return (
         <Box
             component="form"
@@ -24,10 +25,18 @@ export default function LoginOrSignupForm() {
             <TextField
                 required
                 id="outlined-required"
+                label="Username"
+                defaultValue="Username"
+                value={username}
+                onInput={(e) => setUsername(e.target.value)}
+            />
+            <TextField
+                required
+                id="outlined-required"
                 label="Email"
                 defaultValue="Email"
-                value = {email}
-                onInput= {(e) => setEmail(e.target.value)}
+                value={email}
+                onInput={(e) => setEmail(e.target.value)}
             />
             <TextField
                 required
@@ -35,10 +44,12 @@ export default function LoginOrSignupForm() {
                 label="Password"
                 type="password"
                 autoComplete="current-password"
-                value = {password}
+                value={password}
                 onInput={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" variant="contained">Submit</Button>
+            <Button type="submit" variant="contained">
+                Submit
+            </Button>
         </Box>
     );
 }
