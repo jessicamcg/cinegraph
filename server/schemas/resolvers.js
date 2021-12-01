@@ -40,23 +40,23 @@ const resolvers = {
       
           return { token, user };
         },
-        saveMovie: async () => {
-          const savedMovie = await Movie.create(args);
-            return savedMovie;
-        },
-        removeMovie: async (parent, { imdbID }, context) => {
-          if (context.user) {
-              return Movie.findOneAndUpdate(
-                { _id: imdbID },
-                {
-                  $pull: {
-                    movies: { _id: imdbID },
-                  },
-                },
-                { new: true }
-              );
-          }
-        }
+        // saveMovie: async () => {
+        //   const savedMovie = await Movie.create(args);
+        //     return savedMovie;
+        // },
+        // removeMovie: async (parent, { imdbID }, context) => {
+        //   if (context.user) {
+        //       return Movie.findOneAndUpdate(
+        //         { _id: imdbID },
+        //         {
+        //           $pull: {
+        //             movies: { _id: imdbID },
+        //           },
+        //         },
+        //         { new: true }
+        //       );
+        //   }
+        // }
     }
 }
 
