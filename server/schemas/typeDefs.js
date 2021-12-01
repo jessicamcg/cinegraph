@@ -11,18 +11,20 @@ const typeDefs = gql`
 
     type Movies {
         _id: ID
-        title: String
-        rating: Int
-        profit: Int
-        year: Int
+        Title: String
+        Rating: String
+        BoxOffice: String
+        Year: String
     }
     
     type Auth {
         token: ID!
         user: User
     }
+   
 
     type Query {
+        movieData: Movies
         users: [User]
         user(username: String!): User
         savedMovies(username: String): [Movies]
@@ -30,10 +32,16 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        addUser(username: String!, email: String!, password: String!): Auth
-        login(email: String!, password: String!): Auth
+        saveOmdbMovie: Movies
     }
+
+  
 `
 
 
 module.exports = typeDefs;
+
+// type Mutation {
+//     addUser(username: String!, email: String!, password: String!): Auth
+//     login(email: String!, password: String!): Auth
+// }
