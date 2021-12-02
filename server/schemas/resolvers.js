@@ -17,15 +17,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-
-    movieData: async () => {
-      const data = await movieData.movieQuery();
+    movieData: async (parent, args) => {
+      console.log(args)
+      const data = await movieData.movieQuery(args.query);
       const movieInfo = data.data
       movieInfo.Rating = data.data.Ratings[1].Value
       console.log(movieInfo)
       return movieInfo
-
-
     },
   },
   Mutation: {

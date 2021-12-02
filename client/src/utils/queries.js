@@ -48,3 +48,11 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_SEARCH_MOVIE = gql`
+  query movieData($query:String) {
+    movieData(query:$query) {
+      Title
+    }
+  }
+`

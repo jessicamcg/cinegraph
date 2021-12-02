@@ -25,7 +25,7 @@ const typeDefs = gql`
    
 
     type Query {
-        movieData: Movies
+        movieData(query:String): Movies
         users: [User]
         user(username: String!): User
         savedMovies(username: String): [Movies]
