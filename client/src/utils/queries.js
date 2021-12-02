@@ -19,7 +19,7 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_MOVIES = gql`
-  query getMovies {
+  query savedMovies {
       movies {
         _id
         title
