@@ -36,7 +36,6 @@ export default function SearchMovieForm() {
     const handleSave = async (event) => {
         event.preventDefault();
         try {
-
             console.log(searchOutput)
             const addMovie = await saveMovie({
                 variables: {
