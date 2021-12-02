@@ -42,17 +42,15 @@ export default function SignupForm() {
             </Typography>
             <TextField
                 required
-                id="outlined-required"
+                id="outlined-username-input"
                 label="Username"
-                defaultValue="Username"
                 value={username}
                 onInput={(e) => setUsername(e.target.value)}
             />
             <TextField
                 required
-                id="outlined-required"
+                id="outlined-email-input"
                 label="Email"
-                defaultValue="Email"
                 value={email}
                 onInput={(e) => setEmail(e.target.value)}
             />

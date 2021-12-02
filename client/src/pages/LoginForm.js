@@ -44,7 +44,6 @@ export default function LoginForm() {
                 required
                 id="outlined-required"
                 label="Email"
-                defaultValue="Email"
                 value={email}
                 onInput={(e) => setEmail(e.target.value)}
             />
