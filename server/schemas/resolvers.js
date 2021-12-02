@@ -17,15 +17,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-
-    movieData: async () => {
-      const data = await movieData.movieQuery();
+    movieData: async (parent, args) => {
+      console.log(args)
+      const data = await movieData.movieQuery(args.query);
       const movieInfo = data.data
       movieInfo.Rating = data.data.Ratings[1].Value
-      console.log(movieInfo)
+      // console.log(movieInfo)
       return movieInfo
-
-
     },
 
     savedMovies: async () => {
@@ -63,21 +61,24 @@ const resolvers = {
     saveOmdbMovie: async (parent, args) => {
       const data = await movieData.movieQuery();
       const movieInfo = {}
-      movieInfo.title = data.data.Title
-      movieInfo.rating = data.data.Ratings[1].Value
-      movieInfo.boxOffice = data.data.BoxOffice
-      movieInfo.year = data.data.Year
-      console.log(movieInfo)
+      movieInfo.Title = data.data.Title
+      movieInfo.Rating = data.data.Ratings[1].Value
+      movieInfo.BoxOffice = data.data.BoxOffice
+      movieInfo.Year = data.data.Year
+      movieInfo.imdbID = data.data.imdbID
+      // console.log(movieInfo)
       Movies.create(movieInfo)
       // movieInfo.title = data.data.Title
       // movieInfo.title = data.data.Title
 
     },
 
-    // saveMovie: async () => {
-    //   const savedMovie = await Movie.create(args);
-    //   return savedMovie;
-    // },
+    saveMovie: async (parent, args) => {
+      console.log("savemovie",args)
+      const savedMovie = await Movies.create(args);
+      console.log(savedMovie)
+      return savedMovie;
+    },
     removeMovie: async (parent, { imdbID }, context) => {
       if (context.user) {
         return Movie.findOneAndUpdate(
