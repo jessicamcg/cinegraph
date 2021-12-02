@@ -31,16 +31,27 @@ export const ADD_USER = gql`
 `;
 
 export const SAVE_MOVIE = gql`
-  mutation saveMovie ($movies: String) {
-      saveMovie(movies: $movies) {
-        movies {
-            _id
-            title
-            rating
-            profit
-            year
+  mutation saveMovie (
+    $Title: String
+    $Rating: String
+    $BoxOffice:String
+    $Year: String
+    $imdbID: String
+  ) {
+      saveMovie(
+        Title: $Title
+        Rating: $Rating
+        BoxOffice: $BoxOffice
+        Year: $Year
+        imdbID : $imdbID
+      ) {
+        
+            Title
+            Rating
+            BoxOffice
+            Year
             imdbID
-        }
+        
       }
   }
 `

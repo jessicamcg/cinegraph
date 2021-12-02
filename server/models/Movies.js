@@ -1,21 +1,21 @@
 const { Schema, model } = require('mongoose');
 
 const moviesSchema = new Schema({
-    title: {
+    Title: {
         type: String,
         required: 'You need to enter a movie',
         trim: true,
         unique: true
     },
-    rating: {// rotten tom
+    Rating: {// rotten tom
         type: String,
         required: true
     },
-    profit: {//boxoffice
+    BoxOffice: {//boxoffice
         type: String,
         required: true
     },
-    year: {
+    Year: {
         type: String
     },
     imdbID: {
