@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from '@mui/material/Typography';
-
+import Link from "@mui/material/Link";
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -66,6 +66,9 @@ export default function SignupForm() {
             <Button type="submit" variant="contained">
                 Submit
             </Button>
+            <Typography variant="caption" gutterBottom>
+                Already have an account?<Link href="login">Login</Link>instead.
+            </Typography>
         </Box>
     );
 }
