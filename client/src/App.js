@@ -1,5 +1,6 @@
 import './App.css'
 import { CssBaseline } from "@mui/material";
+import Box from "@mui/material/Box"
 import {
   ApolloClient,
   InMemoryCache,
@@ -14,6 +15,7 @@ import Home from "./pages/Home";
 import SignupForm from "./pages/SignupForm";
 import LoginForm from './pages/LoginForm';
 import Dashboard from './components/Dashboard';
+import "./styles/page-content.css"
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -42,12 +44,14 @@ function App() {
         <CssBaseline />
         <Navbar />
         <FilmProvider>
+        <Box className="page-content">
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/signup" component={SignupForm} />
             <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
+        </Box>
         </FilmProvider>
       </Router>
       </ApolloProvider>
