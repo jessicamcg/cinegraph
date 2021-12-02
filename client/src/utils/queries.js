@@ -8,10 +8,10 @@ export const QUERY_USER = gql`
       email
       movies {
         _id
-        title
-        rating
-        profit
-        year
+        Title
+        Rating
+        BoxOffice
+        Year
         imdbID
       }
     }
@@ -22,10 +22,10 @@ export const QUERY_MOVIES = gql`
   query savedMovies {
       movies {
         _id
-        title
-        rating
-        profit
-        year
+        Title
+        Rating
+        BoxOffice
+        Year
         imdbID
       }
   }
@@ -39,12 +39,24 @@ export const QUERY_ME = gql`
       email
       movies {
         _id
-        title
-        rating
-        profit
-        year
+        Title
+        Rating
+        BoxOffice
+        Year
         imdbID
       }
     }
   }
 `;
+
+export const QUERY_SEARCH_MOVIE = gql`
+  query movieData($query:String) {
+    movieData(query:$query) {
+      Title
+      Rating
+      BoxOffice
+      Year
+      imdbID
+    }
+  }
+`

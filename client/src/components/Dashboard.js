@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
+import SearchMovieForm from "./SearchMovieForm";
 
 export default function Dashboard() {
     return (
@@ -14,6 +15,7 @@ export default function Dashboard() {
             <Typography variant='body1' gutterbottom>
                 chart displayed on this page with form to add/remove movies
             </Typography>
+            <SearchMovieForm/>
         </Box>
     )
 }

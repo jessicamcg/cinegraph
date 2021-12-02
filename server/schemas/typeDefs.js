@@ -25,7 +25,7 @@ const typeDefs = gql`
    
 
     type Query {
-        movieData: Movies
+        movieData(query:String): Movies
         users: [User]
         user(username: String!): User
         savedMovies(username: String): [Movies]
@@ -36,11 +36,10 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         saveMovie(
-            _id: ID,
             Title: String,
-            Rating: Int,
-            BoxOffice: Int,
-            Year: Int,
+            Rating: String,
+            BoxOffice: String,
+            Year: String,
             imdbID: String,
         ): Movies
         removeMovie(imdbID: String!): Movies
