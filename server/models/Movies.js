@@ -8,15 +8,15 @@ const moviesSchema = new Schema({
         unique: true
     },
     rating: {// rotten tom
-        type: Number,
+        type: String,
         required: true
     },
     profit: {//boxoffice
-        type: Number,
+        type: String,
         required: true
     },
     year: {
-        type: Number
+        type: String
     },
     imdbID: {
         type: String

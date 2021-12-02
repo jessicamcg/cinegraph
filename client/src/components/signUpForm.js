@@ -5,29 +5,28 @@ import Button from "@mui/material/Button";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
+
 export default function LoginOrSignupForm() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [addUser, { error }] = useMutation(ADD_USER);
+    const [addUser] = useMutation(ADD_USER);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(
-            "Username:",
-            username,
-            "Email:",
-            email,
-            "Password:",
-            password
-        );
-        try {
-            const {data} = addUser({
-                variables: {}
-            })
-        } catch (error) {
-            
-        }
+        const mutationResponse = await addUser({
+            variables: {
+                email: email,
+                password: password,
+                username: username,
+            },
+        });
+        const token = mutationResponse.data.addUser.token;
+        Auth.login(token);
+        console.log("Username:", username, "Email:", email, "Password:", password);
     };
     return (
         <Box
