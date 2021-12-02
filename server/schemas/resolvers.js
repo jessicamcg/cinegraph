@@ -26,9 +26,8 @@ const resolvers = {
       return movieInfo
 
 
-    }
+    },
   },
-
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
@@ -55,12 +54,12 @@ const resolvers = {
     saveOmdbMovie: async (parent, args) => {
       const data = await movieData.movieQuery();
       const movieInfo = {}
-      movieInfo.Title = data.data.Title
-      movieInfo.Rating = data.data.Ratings[1].Value
-      movieInfo.BoxOffice = data.data.BoxOffice
-      movieInfo.Year = data.data.Year
+      movieInfo.title = data.data.Title
+      movieInfo.rating = data.data.Ratings[1].Value
+      movieInfo.profit = data.data.BoxOffice
+      movieInfo.year = data.data.Year
       console.log(movieInfo)
-      return movieInfo
+      Movies.create(movieInfo)
       // movieInfo.title = data.data.Title
       // movieInfo.title = data.data.Title
 
