@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Typography from '@mui/material/Typography';
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
@@ -36,6 +37,9 @@ export default function SignupForm() {
             autoComplete="off"
             onSubmit={handleSubmit}
         >
+            <Typography variant="h3" component="div" gutterBottom>
+                Sign Up
+            </Typography>
             <TextField
                 required
                 id="outlined-required"
