@@ -10,10 +10,13 @@ function Navbar() {
     function showNavigation() {
         if (Auth.loggedIn()) {
             return (
-                <Box sx={{ width: '100%' }}>
+                <Box sx={{ width: '100%', p: '20px' }}>
 
                     <Link to="/">
                         Home
+                    </Link>
+                    <Link to="/dashboard">
+                        Dashboard
                     </Link>
                     <Link to="/" onClick={() => Auth.logout()}>
                         Log Out

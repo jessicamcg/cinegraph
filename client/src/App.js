@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import SignupForm from "./pages/SignupForm";
 import LoginForm from './pages/LoginForm';
+import Dashboard from './components/Dashboard';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -43,6 +44,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/signup" component={SignupForm} />
+          <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
     </ApolloProvider>

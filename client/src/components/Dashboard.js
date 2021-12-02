@@ -8,6 +8,12 @@ export default function Dashboard() {
             <Typography variant='h3'>
                 dashboard
             </Typography>
+            <Typography variant='body1' gutterbottom>
+                can only access this page if logged in
+            </Typography>
+            <Typography variant='body1' gutterbottom>
+                chart displayed on this page with form to add/remove movies
+            </Typography>
         </Box>
     )
 }
