@@ -53,6 +53,10 @@ export const QUERY_SEARCH_MOVIE = gql`
   query movieData($query:String) {
     movieData(query:$query) {
       Title
+      Rating
+      BoxOffice
+      Year
+      imdbID
     }
   }
 `

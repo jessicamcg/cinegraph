@@ -11,20 +11,29 @@ import { QUERY_SEARCH_MOVIE } from "../utils/queries";
 
 export default function SearchMovieForm() {
     const [searchInput, setSearchInput] = useState('');
+    const [searchOutput, setSearchOutput] = useState([])
 
     const data = useQuery(QUERY_SEARCH_MOVIE, {
         variables: {
             query: searchInput
         }
     });
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const searchResult = data.data.movieData
         try {
-            console.log(data)
+            console.log(data.data.movieData)
+            setSearchOutput(searchResult)
+            console.log(searchOutput)
         } catch (e) {
             console.log(e);
         }
     };
+
+    const handleSave = async (event) => {
+        event.preventDefault();
+    }
 
     return (
         <Box
@@ -45,6 +54,28 @@ export default function SearchMovieForm() {
             <Button type="submit" variant="contained">
                 Submit
             </Button>
+            <Box>
+                <Box
+                    component="form"
+                    onSubmit={handleSave}
+                >
+                    <Typography>
+                        {searchOutput.Title}
+                    </Typography>
+                    <Typography>
+                        {searchOutput.Rating}
+                    </Typography>
+                    <Typography>
+                        {searchOutput.BoxOffice}
+                    </Typography>
+                    {searchOutput.Title
+                        ? <Button type='submit' variant='contained'>
+                            Save
+                          </Button>
+                        : null}
+                </Box>
+
+            </Box>
         </Box>
     )
 }
