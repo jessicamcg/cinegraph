@@ -1,25 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
 
-
-
-
-const Home = () => {
+export default function Dashboard() {
     return (
         <Box>
             <Typography variant='h3'>
-                home page
+                dashboard
             </Typography>
             <Typography variant='body1' gutterbottom>
-                and explaination of application
+                can only access this page if logged in
             </Typography>
             <Typography variant='body1' gutterbottom>
-                you should log in (or sign up) to access full features
+                chart displayed on this page with form to add/remove movies
             </Typography>
         </Box>
     )
-};
-
-
-export default Home;
+}

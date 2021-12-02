@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Typography from '@mui/material/Typography';
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-export default function LoginOrSignupForm() {
+export default function SignupForm() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -36,19 +37,20 @@ export default function LoginOrSignupForm() {
             autoComplete="off"
             onSubmit={handleSubmit}
         >
+            <Typography variant="h3" component="div" gutterBottom>
+                Sign Up
+            </Typography>
             <TextField
                 required
-                id="outlined-required"
+                id="outlined-username-input"
                 label="Username"
-                defaultValue="Username"
                 value={username}
                 onInput={(e) => setUsername(e.target.value)}
             />
             <TextField
                 required
-                id="outlined-required"
+                id="outlined-email-input"
                 label="Email"
-                defaultValue="Email"
                 value={email}
                 onInput={(e) => setEmail(e.target.value)}
             />
