@@ -3,13 +3,27 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
+
 export default function LoginOrSignupForm() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [addUser] = useMutation(ADD_USER);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const mutationResponse = await addUser({
+            variables: {
+                email: email,
+                password: password,
+                username: username,
+            },
+        });
+        const token = mutationResponse.data.addUser.token;
+        Auth.login(token);
         console.log("Username:", username, "Email:", email, "Password:", password);
     };
     return (
