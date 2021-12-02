@@ -27,6 +27,15 @@ const resolvers = {
 
 
     },
+
+    savedMovies: async () => {
+      // console.log(data)
+      const data = await Movies.find()
+      console.log(data)
+      return data
+    
+
+    }
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
@@ -56,7 +65,7 @@ const resolvers = {
       const movieInfo = {}
       movieInfo.title = data.data.Title
       movieInfo.rating = data.data.Ratings[1].Value
-      movieInfo.profit = data.data.BoxOffice
+      movieInfo.boxOffice = data.data.BoxOffice
       movieInfo.year = data.data.Year
       console.log(movieInfo)
       Movies.create(movieInfo)

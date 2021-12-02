@@ -11,10 +11,10 @@ const typeDefs = gql`
 
     type Movies {
         _id: ID
-        Title: String
-        Rating: String
-        BoxOffice: String
-        Year: String
+        title: String
+        rating: String
+        boxOffice: String
+        year: String
         imdbID: String
     }
     
@@ -28,8 +28,9 @@ const typeDefs = gql`
         movieData: Movies
         users: [User]
         user(username: String!): User
-        savedMovies(username: String): [Movies]
+        savedMovies: [Movies]
         me: User
+       
     }
 
     type Mutation {

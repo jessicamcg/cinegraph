@@ -11,7 +11,7 @@ const moviesSchema = new Schema({
         type: String,
         required: true
     },
-    profit: {//boxoffice
+    boxOffice: {//boxoffice
         type: String,
         required: true
     },

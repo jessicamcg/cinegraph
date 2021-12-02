@@ -20,11 +20,11 @@ export const QUERY_USER = gql`
 
 export const QUERY_MOVIES = gql`
   query savedMovies {
-      movies {
+     savedMovies {
         _id
         title
         rating
-        profit
+        boxOffice
         year
         imdbID
       }

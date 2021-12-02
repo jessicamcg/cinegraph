@@ -13,7 +13,6 @@ export default function SignupForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [addUser] = useMutation(ADD_USER);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const mutationResponse = await addUser({
