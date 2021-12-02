@@ -10,9 +10,56 @@ import Auth from '../utils/auth';
 
 
 export default function LoginForm() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [login, { error }] = useMutation(LOGIN);
+  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        const mutationResponse = await login({
+          variables: { email: email, password: password },
+        });
+        const token = mutationResponse.data.login.token;
+        Auth.login(token);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
     return (
-        <Box>
-            
+        <Box
+            component="form"
+            sx={{
+                "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit}
+        >
+            <Typography variant="h3" component="div" gutterBottom>
+                Sign Up
+            </Typography>
+            <TextField
+                required
+                id="outlined-required"
+                label="Email"
+                defaultValue="Email"
+                value={email}
+                onInput={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+                required
+                id="outlined-password-input"
+                label="Password"
+                type="password"
+                autoComplete="current-password"
+                value={password}
+                onInput={(e) => setPassword(e.target.value)}
+            />
+            <Button type="submit" variant="contained">
+                Submit
+            </Button>
         </Box>
     )
 }
