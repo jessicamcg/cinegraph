@@ -11,10 +11,10 @@ const typeDefs = gql`
 
     type Movies {
         _id: ID
-        title: String
-        rating: String
-        boxOffice: String
-        year: String
+        Title: String
+        Rating: String
+        BoxOffice: String
+        Year: String
         imdbID: String
     }
     
@@ -28,7 +28,7 @@ const typeDefs = gql`
         movieData(query:String): Movies
         users: [User]
         user(username: String!): User
-        savedMovies: [Movies]
+        savedMovies(username: String): [Movies]
         me: User
        
     }
