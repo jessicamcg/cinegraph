@@ -25,6 +25,15 @@ const resolvers = {
       // console.log(movieInfo)
       return movieInfo
     },
+
+    savedMovies: async () => {
+      // console.log(data)
+      const data = await Movies.find()
+      console.log(data)
+      return data
+    
+
+    }
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {

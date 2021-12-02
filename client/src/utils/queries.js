@@ -20,7 +20,7 @@ export const QUERY_USER = gql`
 
 export const QUERY_MOVIES = gql`
   query savedMovies {
-      movies {
+     movies {
         _id
         Title
         Rating

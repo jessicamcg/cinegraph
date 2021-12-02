@@ -8,6 +8,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { FilmProvider } from './utils/filmContext';
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import SignupForm from "./pages/SignupForm";
@@ -35,19 +36,21 @@ const client = new ApolloClient({
 
 function App() {
   return (
-
-    <ApolloProvider client={client}>
+  
+      <ApolloProvider client={client}>
       <Router>
         <CssBaseline />
         <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={LoginForm} />
-          <Route exact path="/signup" component={SignupForm} />
-          <Route exact path="/dashboard" component={Dashboard} />
-        </Switch>
+        <FilmProvider>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={LoginForm} />
+            <Route exact path="/signup" component={SignupForm} />
+            <Route exact path="/dashboard" component={Dashboard} />
+          </Switch>
+        </FilmProvider>
       </Router>
-    </ApolloProvider>
+      </ApolloProvider>
   );
 }
 

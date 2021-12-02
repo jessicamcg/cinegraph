@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
+import { useFilmContext } from "../utils/filmContext";
 import SearchMovieForm from "./SearchMovieForm";
 
 export default function Dashboard() {
