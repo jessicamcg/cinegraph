@@ -38,7 +38,7 @@ export default function LoginForm() {
             onSubmit={handleSubmit}
         >
             <Typography variant="h3" component="div" gutterBottom>
-                Sign Up
+                Log In
             </Typography>
             <TextField
                 required
@@ -57,6 +57,12 @@ export default function LoginForm() {
                 value={password}
                 onInput={(e) => setPassword(e.target.value)}
             />
+            
+            {error ? (
+                <Typography variant="body1" gutterBottom>
+                    Incorrect credentials
+                </Typography>
+            ) : null}
             <Button type="submit" variant="contained">
                 Submit
             </Button>
