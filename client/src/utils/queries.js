@@ -60,3 +60,14 @@ export const QUERY_SEARCH_MOVIE = gql`
     }
   }
 `
+export const QUERY_SEARCH_MOVIE_AGAIN = gql`
+  query tryAgain($query:String, $queryYear:String) {
+    tryAgain(query:$query, queryYear:$queryYear) {
+      Title
+      Rating
+      BoxOffice
+      Year
+      imdbID
+    }
+  }
+`

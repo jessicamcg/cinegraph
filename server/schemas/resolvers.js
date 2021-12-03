@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 const { Movies, User } = require('../models')
-const { movieData } = require('../utils/movieQuery')
+const { movieData,tryAgain } = require('../utils/movieQuery')
 
 const resolvers = {
   Query: {
@@ -19,18 +19,26 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     movieData: async (parent, args) => {
-      console.log(args)
+      // console.log(args)
       const data = await movieData.movieQuery(args.query);
       const movieInfo = data.data
       movieInfo.Rating = data.data.Ratings[1].Value
       // console.log(movieInfo)
       return movieInfo
     },
+    tryAgain: async (parent, args) => {
+      console.log(args)
+      const data = await tryAgain.movieQueryAgain(args.query, args.queryYear);
+      const movieInfoAgain = data.data
+      movieInfoAgain.Rating = data.data.Ratings[1].Value
+      console.log(movieInfoAgain)
+      return movieInfoAgain
+    },
     savedMovies: async () => {
       // console.log(data)
       const data = await Movies.find()
-      console.log('=============================================================================================================')
-      console.log(data)
+      // console.log('=============================================================================================================')
+      // console.log(data)
       return data
     }
   },
@@ -80,7 +88,7 @@ const resolvers = {
     },
     removeMovie: async (parent, { imdbID }, context) => {
       if (context.user) {
-        return Movie.findOneAndUpdate(
+        return Movies.findOneAndUpdate(
           { _id: imdbID },
           {
             $pull: {
