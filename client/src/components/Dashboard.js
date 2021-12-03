@@ -22,7 +22,7 @@ const  initialState  = useFilmContext();
     
         <Box>
             {/*Breaks on refresh */}
-            {console.log(initialState.savedMovies)}
+            {/* {console.log(initialState.savedMovies)} */}
             <Typography variant='h3'>
                 dashboard
             </Typography>
