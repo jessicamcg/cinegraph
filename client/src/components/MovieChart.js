@@ -1,6 +1,6 @@
 import { ScatterChart, CartesianGrid, XAxis, YAxis, ZAxis, Tooltip, Legend, Scatter} from "recharts";
 
-export default function RenderScatterChart() {
+export default function RenderScatterChart(props) {
     const data01 = [
         {
             x: 100,

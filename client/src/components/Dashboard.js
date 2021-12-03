@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
 import { FilmProvider, useFilmContext } from "../utils/filmContext";
 import SearchMovieForm from "./SearchMovieForm";
+import RenderScatterChart from "./MovieChart";
 export default function Dashboard() {
 const  initialState  = useFilmContext();
 // const [filmState, setFilmState] = useState({...initialState})
@@ -12,10 +13,11 @@ const  initialState  = useFilmContext();
     
         <Box>
             {/*Breaks on refresh */}
-            {console.log(initialState.savedMovies)}
-            <Typography variant='h3'>
+            {console.log(initialState)}
+            <Typography variant='h2'>
                 dashboard
             </Typography>
+            <RenderScatterChart/>
             <Typography variant='body1' gutterbottom>
                 can only access this page if logged in
             </Typography>
