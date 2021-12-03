@@ -12,7 +12,7 @@ const resolvers = {
       return User.findOne({ username }).populate('savedMovies');
     },
     me: async (parent, args, context) => {
-      console.log(context.user)
+      // console.log(context.user)
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate('savedMovies');
       }
@@ -27,11 +27,11 @@ const resolvers = {
       return movieInfo
     },
     tryAgain: async (parent, args) => {
-      console.log(args)
+      // console.log(args)
       const data = await tryAgain.movieQueryAgain(args.query, args.queryYear);
       const movieInfoAgain = data.data
       movieInfoAgain.Rating = data.data.Ratings[1].Value
-      console.log(movieInfoAgain)
+      // console.log(movieInfoAgain)
       return movieInfoAgain
     },
     savedMovies: async () => {

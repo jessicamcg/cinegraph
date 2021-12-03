@@ -36,7 +36,7 @@ export default function SearchMovieForm() {
         // const searchResult = data.data.movieData
         // console.log(searchResult)
             setSearchOutput(data.data.movieData)
-            console.log(searchOutput)
+            // console.log(searchOutput)
         try {
             console.log(data)
         } catch (e) {
@@ -47,7 +47,7 @@ export default function SearchMovieForm() {
     const handleSave = async (event) => {
         event.preventDefault();
         try {
-            console.log(searchOutput)
+            // console.log(searchOutput)
             const addMovie = await saveMovie({
                 variables: {
                     Title: searchOutput.Title,
@@ -57,7 +57,7 @@ export default function SearchMovieForm() {
                     imdbID: searchOutput.imdbID
                 }
             })
-            console.log(addMovie)
+            // console.log(addMovie)
         } catch (e) {
             console.log(e);
         }
@@ -67,7 +67,7 @@ export default function SearchMovieForm() {
         event.preventDefault();
         
         try {
-            console.log(dataTryAgain)
+            // console.log(dataTryAgain)
             setSearchOutput(dataTryAgain.data.tryAgain)
         } catch (e) {
             console.log(e);
