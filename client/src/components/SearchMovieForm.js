@@ -35,10 +35,11 @@ export default function SearchMovieForm() {
 
         // const searchResult = data.data.movieData
         // console.log(searchResult)
-            setSearchOutput(data.data.movieData)
             // console.log(searchOutput)
         try {
-            console.log(data)
+            setSearchOutput(data.data.movieData)
+            setSearchYear('')
+            // console.log(data)
         } catch (e) {
             console.log(e);
         }
