@@ -17,34 +17,34 @@ const Home = () => {
             <Container className="description">
                 <Grid container spacing={2}>
                     <Grid item xs={4}>
-                        <Typography variant="h5" align="center">
-                            explaination
+                        <Typography variant="h5" align="center" className='description-header'>
+                            Visualize Cinema Data
                         </Typography>
-                        <Typography variant="body1" align="center">
-                            explaination details
+                        <Typography variant="body1" align="center" className='description-content'>
+                            Satisfy your curiosity by searching and saving relational film data which you can quickly see plotted in comparison to other films. See how box office and budget trend together. 
                         </Typography>
                     </Grid>
                     <Grid item xs={4}>
-                        <Typography variant="h5" align="center">
+                        <Typography variant="h5" align="center"className='description-header'>
                             of
                         </Typography>
-                        <Typography variant="body1" align="center">
+                        <Typography variant="body1" align="center" className='description-content'>
                             more details
                         </Typography>
                     </Grid>
                     <Grid item xs={4}>
-                        <Typography variant="h5" align="center">
-                            application
+                        <Typography variant="h5" align="center"className='description-header'>
+                            Adaptation Potential
                         </Typography>
-                        <Typography variant="body1" align="center">
-                            even more details
+                        <Typography variant="body1" align="center" className='description-content'>
+                            Cinegraph is a proof of concept showing that we could work with large datasets and visually display them. With minor adjustments, this application can be applied to work with any large dataset as a visaulization and analysis tool. 
                         </Typography>
                     </Grid>
                 </Grid>
             </Container>
             <Container className="call-to-action">
-                <Typography variant="body1" gutterbottom>
-                    you should log in (or sign up) to access full features
+                <Typography variant="h4" align="center">
+                    Please log in or sign up to access our full functionality.
                 </Typography>
             </Container>
         </Box>
