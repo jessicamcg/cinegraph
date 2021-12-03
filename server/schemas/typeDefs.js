@@ -28,7 +28,7 @@ const typeDefs = gql`
         movieData(query:String): Movies
         users: [User]
         user(username: String!): User
-        savedMovies(username: String): [Movies]
+        savedMovies: [Movies]
         me: User
        
     }
