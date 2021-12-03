@@ -19,7 +19,7 @@ const  initialState  = useFilmContext();
             </h4>
             );
         }
-    const initialState = useFilmContext()
+    // const initialState = useFilmContext()
     
     return (
         <Box>
