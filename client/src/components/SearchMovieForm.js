@@ -12,7 +12,8 @@ import { SAVE_MOVIE } from "../utils/mutations";
 export default function SearchMovieForm() {
     const [searchInput, setSearchInput] = useState('');
     const [searchOutput, setSearchOutput] = useState({});
-    const [saveMovie] = useMutation(SAVE_MOVIE)
+    const [saveMovie] = useMutation(SAVE_MOVIE);
+    
     const data = useQuery(QUERY_SEARCH_MOVIE, {
             variables: {
                 query: searchInput

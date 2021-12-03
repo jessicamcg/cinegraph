@@ -6,14 +6,15 @@ const { movieData } = require('../utils/movieQuery')
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('movies');
+      return User.find().populate('savedMovies');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('movies');
+      return User.findOne({ username }).populate('savedMovies');
     },
     me: async (parent, args, context) => {
+      console.log(context.user)
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('movies');
+        return User.findOne({ _id: context.user._id }).populate('savedMovies');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -28,7 +29,8 @@ const resolvers = {
 
     savedMovies: async () => {
       // console.log(data)
-      const data = await Movies.find()
+      const params = username ? { username } : {};
+      const data = await Movies.find(params)
       console.log(data)
       return data
     

@@ -6,7 +6,7 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      movies {
+      savedMovies {
         _id
         Title
         Rating
@@ -20,7 +20,7 @@ export const QUERY_USER = gql`
 
 export const QUERY_MOVIES = gql`
   query savedMovies {
-     movies {
+     savedMovies {
         _id
         Title
         Rating
@@ -37,7 +37,7 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      movies {
+      savedMovies {
         _id
         Title
         Rating
