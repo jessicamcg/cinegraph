@@ -26,7 +26,7 @@ const Home = () => {
                     </Grid>
                     <Grid item xs={4}>
                         <Typography variant="h5" align="center"className='description-header'>
-                            of
+                            More details
                         </Typography>
                         <Typography variant="body1" align="center" className='description-content'>
                             more details
