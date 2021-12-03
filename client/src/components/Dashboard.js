@@ -17,11 +17,11 @@ const  initialState  = useFilmContext();
             <Typography variant='h2'>
                 dashboard
             </Typography>
-            <RenderScatterChart/>
-            <Typography variant='body1' gutterbottom>
+            <RenderScatterChart database={initialState}/>
+            <Typography variant='body1'>
                 can only access this page if logged in
             </Typography>
-            <Typography variant='body1' gutterbottom>
+            <Typography variant='body1'>
                 chart displayed on this page with form to add/remove movies
             </Typography>
             <SearchMovieForm/>
