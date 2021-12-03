@@ -31,7 +31,7 @@ export default function SearchMovieForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(data)
+        // console.log(data)
 
         // const searchResult = data.data.movieData
         // console.log(searchResult)
