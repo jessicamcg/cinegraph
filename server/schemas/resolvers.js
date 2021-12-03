@@ -29,6 +29,7 @@ const resolvers = {
     savedMovies: async () => {
       // console.log(data)
       const data = await Movies.find()
+      console.log('=============================================================================================================')
       console.log(data)
       return data
     
