@@ -29,8 +29,13 @@ const resolvers = {
 
     savedMovies: async () => {
       // console.log(data)
+<<<<<<< HEAD
       const params = username ? { username } : {};
       const data = await Movies.find(params)
+=======
+      const data = await Movies.find()
+      console.log('=============================================================================================================')
+>>>>>>> main
       console.log(data)
       return data
     

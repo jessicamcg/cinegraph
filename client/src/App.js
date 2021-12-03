@@ -40,10 +40,11 @@ function App() {
   return (
   
       <ApolloProvider client={client}>
+      <FilmProvider>
       <Router>
         <CssBaseline />
         <Navbar />
-        <FilmProvider>
+        
         <Box className="page-content">
           <Switch>
             <Route exact path="/" component={Home} />
@@ -52,8 +53,8 @@ function App() {
             <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
         </Box>
-        </FilmProvider>
       </Router>
+      </FilmProvider>
       </ApolloProvider>
   );
 }
