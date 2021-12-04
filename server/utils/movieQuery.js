@@ -10,15 +10,26 @@ router.use((req, res) => {
 
 const movieData = {
   movieQuery: async (query) => {
-    console.log(query)
+    // console.log(query)
+    const fixedQuery = query.split(" ").join("+")
     return await axios({
       method: 'get',
-      url: `http://www.omdbapi.com/?apikey=506676e3&t&t=${query}`,
+      url: `http://www.omdbapi.com/?apikey=506676e3&t&t=${fixedQuery}`,
     })
   }
-
 }
 
-module.exports = { movieData };
+const tryAgain = {
+  movieQueryAgain: async (query, queryYear) => {
+    console.log(query, queryYear)
+    const fixedQuery = query.split(" ").join("+")
+      return await axios({
+        method: 'get',
+        url: `http://www.omdbapi.com/?apikey=506676e3&t&t=${fixedQuery}&y=${queryYear}`,
+      })
+  }
+}
+
+module.exports = { movieData, tryAgain };
 
 

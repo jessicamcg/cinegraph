@@ -26,6 +26,7 @@ const typeDefs = gql`
 
     type Query {
         movieData(query:String): Movies
+        tryAgain(query:String, queryYear:String): Movies
         users: [User]
         user(username: String!): User
         savedMovies: [Movies]

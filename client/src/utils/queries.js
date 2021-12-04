@@ -6,7 +6,7 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      movies {
+      savedMovies {
         _id
         Title
         Rating
@@ -37,7 +37,7 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      movies {
+      savedMovies {
         _id
         Title
         Rating
@@ -52,6 +52,17 @@ export const QUERY_ME = gql`
 export const QUERY_SEARCH_MOVIE = gql`
   query movieData($query:String) {
     movieData(query:$query) {
+      Title
+      Rating
+      BoxOffice
+      Year
+      imdbID
+    }
+  }
+`
+export const QUERY_SEARCH_MOVIE_AGAIN = gql`
+  query tryAgain($query:String, $queryYear:String) {
+    tryAgain(query:$query, queryYear:$queryYear) {
       Title
       Rating
       BoxOffice
