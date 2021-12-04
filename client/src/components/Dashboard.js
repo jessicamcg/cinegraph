@@ -12,47 +12,42 @@ import SearchMovieForm from "./SearchMovieForm";
 import Auth from "../utils/auth";
 
 import RenderScatterChart from "./MovieChart";
-    
+
 
 export default function Dashboard() {
-const queryMovies = useQuery(QUERY_MOVIES)
-const initialState = queryMovies.data
+    const queryMovies = useQuery(QUERY_MOVIES)
+    const initialState = queryMovies.data
 
-const  [state, setState]  = useFilmContext();
-// const movieList = initialState.savedMovies;
-useEffect(() => {
-    setState({...state, movies:initialState})
-},[])
-console.log(state)
+    const [state, setState] = useFilmContext();
+    // const movieList = initialState.savedMovies;
+    useEffect(() => {
+        setState({ ...state, movies: initialState })
+    }, [])
+    // console.log(state)
 
-// const [state, dispatch] = useReducer(reducer, initialState )
-// const { initialState } = FilmProvider
+    // const [state, dispatch] = useReducer(reducer, initialState )
+    // const { initialState } = FilmProvider
 
 
-// React.useEffect(()=>{
-//     // dispatch({
-//     //     type:"SAVE_MOVIE",
-//     //     "payload":"test1"
-//     // })
-// console.log(initialState,state);
-// },[state])
-// const database = 
+    // React.useEffect(()=>{
+    //     // dispatch({
+    //     //     type:"SAVE_MOVIE",
+    //     //     "payload":"test1"
+    //     // })
+    // console.log(initialState,state);
+    // },[state])
 
     if (!Auth.getToken()) {
-            return (
+        return (
             <h4>
                 You need to be logged in to see this. Use the navigation links above to
                 sign up or log in!
             </h4>
-            );
-        }
-    
+        );
+    }
+
     return (
         <Box>
-            {/*Breaks on refresh */}
-
-          
-            {/* {console.log(initialState)} */}
             {/* {dispatch({
                 type:"test"
             })} */}
@@ -63,12 +58,6 @@ console.log(state)
                 ? <RenderScatterChart database={initialState} />
                 : null
             }
-            <Typography variant="body1">
-                can only access this page if logged in
-            </Typography>
-            <Typography variant="body1">
-                chart displayed on this page with form to add/remove movies
-            </Typography>
             <SearchMovieForm />
         </Box>
     );
