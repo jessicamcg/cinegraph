@@ -63,6 +63,7 @@ export default function SearchMovieForm(props) {
 // props.dispatch({type:"test"})
 
             // console.log(addMovie)
+            console.log(addMovie);
         } catch (e) {
             console.log(e);
         }
@@ -118,13 +119,15 @@ export default function SearchMovieForm(props) {
                 <Typography>
                     {searchOutput.BoxOffice}
                 </Typography>
-                
+                {searchOutput.Title
+                    ? <Button type='submit' variant='contained'>
+                          Save
+                      </Button>
+                    : null
+                }
             </Box>
             {searchOutput.Title
                     ? <>
-                        <Button type='submit' variant='contained'>
-                            Save
-                        </Button>
                         <Typography>
                             Not the movie you're looking for?
                         </Typography>

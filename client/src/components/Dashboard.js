@@ -36,7 +36,7 @@ console.log(state)
 //     // })
 // console.log(initialState,state);
 // },[state])
-
+// const database = 
 
     if (!Auth.getToken()) {
             return (
@@ -46,7 +46,6 @@ console.log(state)
             </h4>
             );
         }
-    // const initialState = useFilmContext()
     
     return (
         <Box>
@@ -60,7 +59,10 @@ console.log(state)
 
             {console.log(initialState)}
             <Typography variant="h2">dashboard</Typography>
-            <RenderScatterChart database={initialState} />
+            {initialState
+                ? <RenderScatterChart database={initialState} />
+                : null
+            }
             <Typography variant="body1">
                 can only access this page if logged in
             </Typography>
