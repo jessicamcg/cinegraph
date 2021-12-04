@@ -9,7 +9,7 @@ export default function Dashboard() {
 const  initialState  = useFilmContext();
 // const movieList = initialState.savedMovies;
 
-const [state, dispatch] = useReducer(reducer, initialState )
+// const [state, dispatch] = useReducer(reducer, initialState )
 // const { initialState } = FilmProvider
 
 // React.useEffect(()=>{
@@ -25,7 +25,7 @@ const [state, dispatch] = useReducer(reducer, initialState )
         <Box>
             {/*Breaks on refresh */}
           
-            {console.log(initialState)}
+            {console.log(initialState.savedMovies)}
             {/* {dispatch({
                 type:"test"
             })} */}
@@ -39,9 +39,8 @@ const [state, dispatch] = useReducer(reducer, initialState )
                 chart displayed on this page with form to add/remove movies
             </Typography>
             <SearchMovieForm 
-            state = {state}
-            dispatch = {dispatch}/>
-            {initialState.savedMovies[initialState.savedMovies.length-1].Title}
+            />
+            {/* {initialState.savedMovies[initialState.savedMovies.length-1].Title} */}
         </Box>
     )
 }
