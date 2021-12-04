@@ -9,7 +9,7 @@ import { QUERY_SEARCH_MOVIE, QUERY_SEARCH_MOVIE_AGAIN } from "../utils/queries";
 import { SAVE_MOVIE } from "../utils/mutations";
 
 
-export default function SearchMovieForm() {
+export default function SearchMovieForm(props) {
     const [searchInput, setSearchInput] = useState('');
     const [searchOutput, setSearchOutput] = useState({});
     const [saveMovie] = useMutation(SAVE_MOVIE);
@@ -58,6 +58,10 @@ export default function SearchMovieForm() {
                     imdbID: searchOutput.imdbID
                 }
             })
+
+// console.log(props.client)
+// props.dispatch({type:"test"})
+
             // console.log(addMovie)
         } catch (e) {
             console.log(e);
@@ -70,6 +74,7 @@ export default function SearchMovieForm() {
         try {
             // console.log(dataTryAgain)
             setSearchOutput(dataTryAgain.data.tryAgain)
+
         } catch (e) {
             console.log(e);
         }
