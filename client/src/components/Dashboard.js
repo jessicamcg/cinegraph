@@ -1,10 +1,10 @@
-import React, { useReducer, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from '@apollo/client';
 import { QUERY_MOVIES } from '../utils/queries';
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { FilmProvider, useFilmContext } from "../utils/filmContext";
+import {  useFilmContext } from "../utils/filmContext";
 import SearchMovieForm from "./SearchMovieForm";
 
 // import reducer from '../utils/reducers'
@@ -12,6 +12,7 @@ import SearchMovieForm from "./SearchMovieForm";
 import Auth from "../utils/auth";
 
 import RenderScatterChart from "./MovieChart";
+import RemoveMovieForm from "./RemoveMovieForm";
 
 
 export default function Dashboard() {
@@ -38,6 +39,7 @@ export default function Dashboard() {
     // },[state])
 
     if (!Auth.getToken()) {
+        // checkthis
         return (
             <h4>
                 You need to be logged in to see this. Use the navigation links above to
@@ -55,7 +57,11 @@ export default function Dashboard() {
             {console.log(initialState)}
             <Typography variant="h2">dashboard</Typography>
             {initialState
-                ? <RenderScatterChart database={initialState} />
+                ? 
+                  <>
+                    <RenderScatterChart database={initialState} />
+                    <RemoveMovieForm database={initialState} />
+                  </>
                 : null
             }
             <SearchMovieForm />
