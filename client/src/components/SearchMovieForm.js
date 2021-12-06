@@ -8,7 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_SEARCH_MOVIE, QUERY_SEARCH_MOVIE_AGAIN } from "../utils/queries";
+import { QUERY_MOVIES, QUERY_SEARCH_MOVIE, QUERY_SEARCH_MOVIE_AGAIN, QUERY_ME } from "../utils/queries";
 import { SAVE_MOVIE } from "../utils/mutations";
 
 const Alert = React.forwardRef(function Alert(props, ref) {

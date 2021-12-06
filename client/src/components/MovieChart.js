@@ -1,5 +1,7 @@
 import { ScatterChart, CartesianGrid, XAxis, YAxis, ZAxis, Tooltip, Legend, Scatter, Label } from "recharts";
 import ChartTooltip from "./ChartTooltip"
+import Box from "@mui/material/Box";
+
 
 export default function RenderScatterChart(props) {
     const ratingCleaner = (rating) => {
@@ -29,9 +31,20 @@ export default function RenderScatterChart(props) {
         let segment = rounded/4
         return [segment, segment*2, segment *3]
     }
-
     const movieArray = props.database.savedMovies
-    const graphData = movieArray.map((e) => ({ x: boxOfficeCleaner(e.BoxOffice), y: ratingCleaner(e.Rating), name: e.Title }))
+    if (movieArray == undefined) {
+            return (
+                <Box></Box>
+            )
+        }
+
+    let graphData = null;
+    if (movieArray) {
+
+    graphData = movieArray.map((e) => ({ x: boxOfficeCleaner(e.BoxOffice), y: ratingCleaner(e.Rating), name: e.Title }))
+    }
+
+    
 
     return (
         <ScatterChart
