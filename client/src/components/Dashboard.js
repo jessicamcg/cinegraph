@@ -38,7 +38,7 @@ export default function Dashboard() {
     // console.log(initialState,state);
     // },[state])
 
-    if (!Auth.getToken()) {
+    if (!Auth.loggedIn()) {
         
         return (
             <h4>
