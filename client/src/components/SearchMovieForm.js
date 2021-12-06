@@ -20,27 +20,7 @@ export default function SearchMovieForm() {
     const [searchOutput, setSearchOutput] = useState({});
     const [searchYear, setSearchYear] = useState('');
 
-    const [saveMovie] = useMutation(SAVE_MOVIE,{
-        update(cache, { data: { saveMovie } }) {
-            try {
-              const { savedMovies } = cache.readQuery({ query: QUERY_MOVIES });
-      
-              cache.writeQuery({
-                query: QUERY_MOVIES,
-                data: { savedMovies: [saveMovie, ...savedMovies] },
-              });
-            console.log(savedMovies);
-            } catch (e) {
-              console.error(e);
-            }
-            // update me object's cache
-            const { me } = cache.readQuery({ query: QUERY_ME });
-            cache.writeQuery({
-              query: QUERY_ME,
-              data: { me: { ...me, savedMovies: [...me.savedMovies, saveMovie] } },
-            });
-        },
-    });
+    const [saveMovie] = useMutation(SAVE_MOVIE);
 
     const [open, setOpen] = React.useState(false);
     const handleClose = (event, reason) => {
@@ -76,7 +56,6 @@ export default function SearchMovieForm() {
     };
 
     const handleSave = async (event) => {
-        event.preventDefault();
         try {
             const addMovie = await saveMovie({
                 variables: {
