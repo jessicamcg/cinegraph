@@ -8,20 +8,19 @@ function Navbar() {
     function showNavigation() {
         return Auth.loggedIn() ? (
             <>
-                <Button href="dashboard" color="warning" fulldWidth="false">
+                <Button href="dashboard" color="warning">
                     Dashboard
                 </Button>
                 <Button
                     href="/"
                     color="warning"
-                    fulldWidth="false"
                     onClick={() => Auth.logout()}
                 >
                     Log Out
                 </Button>
             </>
         ) : (
-            <Button href="login" color="warning" fulldWidth="false">
+            <Button href="login" color="warning">
                 Log In
             </Button>
         );
@@ -30,7 +29,7 @@ function Navbar() {
     return (
         <AppBar className="navbar" position="fixed">
             <Toolbar variant="dense">
-            <Button href="/" color="warning" fulldWidth="false">
+            <Button href="/" color="warning">
                 Home
             </Button>
             {showNavigation()}
