@@ -8,7 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_SEARCH_MOVIE, QUERY_SEARCH_MOVIE_AGAIN } from "../utils/queries";
+import { QUERY_MOVIES, QUERY_SEARCH_MOVIE, QUERY_SEARCH_MOVIE_AGAIN, QUERY_ME } from "../utils/queries";
 import { SAVE_MOVIE } from "../utils/mutations";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -20,7 +20,27 @@ export default function SearchMovieForm() {
     const [searchOutput, setSearchOutput] = useState({});
     const [searchYear, setSearchYear] = useState('');
 
-    const [saveMovie] = useMutation(SAVE_MOVIE);
+    const [saveMovie] = useMutation(SAVE_MOVIE,{
+        update(cache, { data: { saveMovie } }) {
+            try {
+              const { savedMovies } = cache.readQuery({ query: QUERY_MOVIES });
+      
+              cache.writeQuery({
+                query: QUERY_MOVIES,
+                data: { savedMovies: [saveMovie, ...savedMovies] },
+              });
+            console.log(savedMovies);
+            } catch (e) {
+              console.error(e);
+            }
+            // update me object's cache
+            const { me } = cache.readQuery({ query: QUERY_ME });
+            cache.writeQuery({
+              query: QUERY_ME,
+              data: { me: { ...me, savedMovies: [...me.savedMovies, saveMovie] } },
+            });
+        },
+    });
 
     const [open, setOpen] = React.useState(false);
     const handleClose = (event, reason) => {
@@ -56,6 +76,7 @@ export default function SearchMovieForm() {
     };
 
     const handleSave = async (event) => {
+        event.preventDefault();
         try {
             const addMovie = await saveMovie({
                 variables: {

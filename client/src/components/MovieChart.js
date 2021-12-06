@@ -30,7 +30,7 @@ export default function RenderScatterChart(props) {
         >
             <CartesianGrid strokeDasharray="4" />
             <XAxis dataKey="x" name="Box Office" unit="USD">
-                <Label value="Pages of my website" offset={-4} position="insideBottom" />
+                <Label value="Box Office" offset={-4} position="insideBottom" />
             </XAxis>
             <YAxis dataKey="y" name="Rotten Tomatoes Score" unit="%">
                 <Label value="Ratings" offset={-4} angle={-90} position="insideLeft" />
