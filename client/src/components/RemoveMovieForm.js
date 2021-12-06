@@ -46,7 +46,6 @@ export default function RemoveMovieForm(props) {
                 alignItems: 'flex-start',
                 flexDirection: 'column',
             }}
-            noValidate
             autoComplete="off"
             onSubmit={handleRemove}
         >
@@ -54,6 +53,7 @@ export default function RemoveMovieForm(props) {
                 Remove movie from graph
             </Typography>
             <TextField
+                required
                 id="outlined-select-movie"
                 select
                 label="Select movie to remove"
