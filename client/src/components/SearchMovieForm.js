@@ -9,13 +9,13 @@ import { QUERY_SEARCH_MOVIE, QUERY_SEARCH_MOVIE_AGAIN } from "../utils/queries";
 import { SAVE_MOVIE } from "../utils/mutations";
 
 
-export default function SearchMovieForm(props) {
+export default function SearchMovieForm() {
     const [searchInput, setSearchInput] = useState('');
     const [searchOutput, setSearchOutput] = useState({});
     const [saveMovie] = useMutation(SAVE_MOVIE);
-    
+
     const [searchYear, setSearchYear] = useState('');
-    
+
     const data = useQuery(QUERY_SEARCH_MOVIE, {
         variables: {
             query: searchInput
@@ -31,24 +31,16 @@ export default function SearchMovieForm(props) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // console.log(data)
-
-        // const searchResult = data.data.movieData
-        // console.log(searchResult)
-            // console.log(searchOutput)
         try {
             setSearchOutput(data.data.movieData)
             setSearchYear('')
-            // console.log(data)
         } catch (e) {
             console.log(e);
         }
     };
 
     const handleSave = async (event) => {
-        event.preventDefault();
         try {
-            // console.log(searchOutput)
             const addMovie = await saveMovie({
                 variables: {
                     Title: searchOutput.Title,
@@ -58,17 +50,22 @@ export default function SearchMovieForm(props) {
                     imdbID: searchOutput.imdbID
                 }
             })
-            // console.log(addMovie)
+
+            // console.log(props.client)
+            // props.dispatch({type:"test"})
+
+            setSearchInput('')
+            setSearchOutput('')
         } catch (e) {
+            event.preventDefault();
             console.log(e);
         }
     }
 
     const handleTryAgain = async (event) => {
         event.preventDefault();
-        
+
         try {
-            // console.log(dataTryAgain)
             setSearchOutput(dataTryAgain.data.tryAgain)
         } catch (e) {
             console.log(e);
@@ -95,7 +92,7 @@ export default function SearchMovieForm(props) {
                 <Button type="submit" variant="contained">
                     Submit
                 </Button>
-                
+
             </Box>
             <Box
                 component="form"
@@ -113,33 +110,35 @@ export default function SearchMovieForm(props) {
                 <Typography>
                     {searchOutput.BoxOffice}
                 </Typography>
-                
+                {searchOutput.Title
+                    ? <Button type='submit' variant='contained'>
+                        Save
+                    </Button>
+                    : null
+                }
             </Box>
             {searchOutput.Title
-                    ? <>
-                        <Button type='submit' variant='contained'>
-                            Save
+                ? <>
+                    <Typography>
+                        Not the movie you're looking for?
+                    </Typography>
+                    <Box
+                        component="form"
+                        onSubmit={handleTryAgain}
+                    >
+                        <TextField
+                            required
+                            id="search-year-input"
+                            label="Year"
+                            value={searchYear}
+                            onInput={(e) => setSearchYear(e.target.value)}
+                        />
+                        <Button type="submit" variant="contained">
+                            Search Year for {searchOutput.Title}
                         </Button>
-                        <Typography>
-                            Not the movie you're looking for?
-                        </Typography>
-                        <Box
-                            component="form"
-                            onSubmit={handleTryAgain}
-                        >
-                            <TextField
-                                required
-                                id="search-year-input"
-                                label="Year"
-                                value={searchYear}
-                                onInput={(e) => setSearchYear(e.target.value)}
-                            />
-                            <Button type="submit" variant="contained">
-                                Search Year for {searchOutput.Title}
-                            </Button>
-                        </Box>
-                    </>
-                    : null}
+                    </Box>
+                </>
+                : null}
         </Box>
     )
 }
