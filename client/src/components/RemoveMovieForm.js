@@ -20,9 +20,6 @@ export default function RemoveMovieForm(props) {
     };
 
     const handleRemove = async (event) => {
-        console.log(movie);
-        event.preventDefault();
-
         try {
             const remove = await removeMovie({
                 variables: {
@@ -31,6 +28,7 @@ export default function RemoveMovieForm(props) {
             })
             console.log(remove);
         } catch (e) {
+            event.preventDefault();
             console.log(e);
         }
     }
