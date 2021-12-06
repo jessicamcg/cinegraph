@@ -45,7 +45,7 @@ export const SAVE_MOVIE = gql`
         Year: $Year
         imdbID : $imdbID
       ) {
-        
+      
             Title
             Rating
             BoxOffice
@@ -57,7 +57,13 @@ export const SAVE_MOVIE = gql`
 `
 
 export const REMOVE_MOVIE = gql`
-    mutation removeMovie ($imdbID: String) {
-        removeMovie ( where:{imdbID: $imdbID} )
+    mutation removeMovie ( $imdbID: String! ) {
+        removeMovie ( imdbID: $imdbID ) {
+          Title
+          Rating
+          BoxOffice
+          Year
+          imdbID
+        }
     }
 `

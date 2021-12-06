@@ -4,6 +4,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
+import Auth from "../utils/auth";
+
 // hero cinegraph
 // description
 // call to action
@@ -43,9 +45,16 @@ const Home = () => {
                 </Grid>
             </Container>
             <Container className="call-to-action">
-                <Typography variant="h4" align="center">
-                    Please log in or sign up to access our full functionality.
-                </Typography>
+                {!Auth.loggedIn()
+                    ? <Typography variant="h4" align="center">
+                        Please log in or sign up to access our full functionality.
+                      </Typography>
+                    : <Typography variant="h4" align="center">
+                        You are logged in! Use the navigation links above to
+                        view your dashboard!
+                      </Typography>
+                }
+                
             </Container>
         </Box>
     );
