@@ -39,7 +39,7 @@ export default function Dashboard() {
     // },[state])
 
     if (!Auth.getToken()) {
-        // checkthis
+        
         return (
             <h4>
                 You need to be logged in to see this. Use the navigation links above to

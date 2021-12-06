@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Auth from "../utils/auth";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_SEARCH_MOVIE, QUERY_SEARCH_MOVIE_AGAIN } from "../utils/queries";
 import { SAVE_MOVIE } from "../utils/mutations";
