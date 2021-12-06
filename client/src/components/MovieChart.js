@@ -1,4 +1,5 @@
 import { ScatterChart, CartesianGrid, XAxis, YAxis, ZAxis, Tooltip, Legend, Scatter, Label } from "recharts";
+import Box from "@mui/material/Box";
 
 export default function RenderScatterChart(props) {
     const ratingCleaner = (rating) => {
@@ -27,10 +28,22 @@ export default function RenderScatterChart(props) {
         let rounded = Math.ceil(highestBoxOffice/100000000)*100000000
         let segment = rounded/4
         return [segment, segment*2, segment *3]
+        console.log(graphData)
+    }
+    const movieArray = props.database.savedMovies
+    if (movieArray == undefined) {
+            return (
+                <Box></Box>
+            )
+        }
+
+    let graphData = null;
+    if (movieArray) {
+
+    graphData = movieArray.map((e) => ({ x: boxOfficeCleaner(e.BoxOffice), y: ratingCleaner(e.Rating), name: e.Title }))
     }
 
-    const movieArray = props.database.savedMovies
-    const graphData = movieArray.map((e) => ({ x: boxOfficeCleaner(e.BoxOffice), y: ratingCleaner(e.Rating), name: e.Title }))
+    
 
     return (
         <ScatterChart
@@ -40,7 +53,7 @@ export default function RenderScatterChart(props) {
         >
             <CartesianGrid strokeDasharray="4" />
             <XAxis dataKey="x" name="Box Office" unit="USD"  type="number" ticks={tickGenerator(graphData)}>
-                <Label value="Pages of my website" offset={-4} position="insideBottom" />
+                <Label value="Box Office" offset={-4} position="insideBottom" />
             </XAxis>
             <YAxis dataKey="y" name="Rotten Tomatoes Score" unit="%">
                 <Label value="Ratings" offset={-4} angle={-90} position="insideLeft" />
@@ -48,7 +61,7 @@ export default function RenderScatterChart(props) {
             {/* <ZAxis dataKey="z" range={[64, 144]} name="score" unit="km" /> */}
             <Tooltip cursor={{ strokeDasharray: "4" }} content="banana" />
             <Legend verticalAlign="top" height={36}/>
-            <Scatter name="Movies" data={graphData} fill="#8884d8" />
+            <Scatter name="Movies" data={graphData} fill="#8884d8"/>
         </ScatterChart>
     );
 }
