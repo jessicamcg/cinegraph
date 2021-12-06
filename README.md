@@ -2,7 +2,7 @@
 
 ## Description
 
-Cinegraph is
+Cinegraph is data visualization and modeling application which accepts queries from users to chart relational data about movies. Users can sign up and log in to the application to search for and save movie queries which are stored on a cloud database. 
 
 ## Deployment
 
@@ -20,6 +20,10 @@ The website is deployed on [Heroku](https://movie-data-model.herokuapp.com/)
 
 ## Resources
 
+### API
+
+-   [OMDb](http://www.omdbapi.com/)
+
 ### Framework & Components
 
 -   [MUI](https://mui.com/)
@@ -29,6 +33,7 @@ The website is deployed on [Heroku](https://movie-data-model.herokuapp.com/)
 ### Dashboard
 
 -   Display movie poster when querying for movies
+-   Create
 
 ### Signup
 
