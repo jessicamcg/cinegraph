@@ -19,13 +19,11 @@ export default function RenderScatterChart(props) {
     }
     const tickGenerator = (array) => {
         let highestBoxOffice = 0
-        console.log(array[0])
         for (let i = 0; i<array.length; i++) {
             if (array[i].x > highestBoxOffice) {
                 highestBoxOffice = array[i].x
             }
         }
-        console.log("highestBO:", highestBoxOffice)
         let rounded = Math.ceil(highestBoxOffice/100000000)*100000000
         let segment = rounded/4
         return [segment, segment*2, segment *3]
@@ -34,7 +32,6 @@ export default function RenderScatterChart(props) {
     const movieArray = props.database.savedMovies
     const graphData = movieArray.map((e) => ({ x: boxOfficeCleaner(e.BoxOffice), y: ratingCleaner(e.Rating), name: e.Title }))
 
-    console.log("graph data:", graphData);
     return (
         <ScatterChart
             width={730}
