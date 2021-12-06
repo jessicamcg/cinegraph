@@ -18,8 +18,10 @@ import RemoveMovieForm from "./RemoveMovieForm";
 import SearchMovieForm from "./SearchMovieForm";
 
 export default function Dashboard() {
+
     const queryMovies = useQuery(QUERY_MOVIES);
     const initialState = queryMovies.data;
+
 
     const [state, setState] = useFilmContext();
     // const movieList = initialState.savedMovies;
