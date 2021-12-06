@@ -46,9 +46,9 @@ export default function Dashboard() {
                 You need to be logged in to see this. Use the navigation links above to
                 sign up or log in!
             </h4>
-        );
-    }
-
+            );
+        }
+    
     return (
         <Box>
             {/* {dispatch({
