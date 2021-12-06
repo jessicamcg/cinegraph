@@ -87,17 +87,10 @@ const resolvers = {
       return savedMovie;
     },
     removeMovie: async (parent, { imdbID }, context) => {
-      if (context.user) {
-        return Movies.findOneAndUpdate(
-          { _id: imdbID },
-          {
-            $pull: {
-              movies: { _id: imdbID },
-            },
-          },
-          { new: true }
+        return Movies.findOneAndDelete(
+          { imdbID: imdbID },
         );
-      }
+      
     }
   }
 }
