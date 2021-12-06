@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_MOVIES } from "../utils/queries";
-import "../styles/dashboard.css"
+// import "../styles/dashboard.css"
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
