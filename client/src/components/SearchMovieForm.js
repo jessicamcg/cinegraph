@@ -76,6 +76,13 @@ export default function SearchMovieForm() {
             <Box
                 component="form"
                 onSubmit={handleSubmit}
+                sx={{
+                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    flexDirection: 'column',
+                }}
+                autoComplete="off"
             >
                 <Typography variant="h4" component="div" gutterBottom>
                     Search for a Movie
@@ -96,25 +103,34 @@ export default function SearchMovieForm() {
             <Box
                 component="form"
                 onSubmit={handleSave}
+                sx={{
+                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    flexDirection: 'column',
+                }}
+                autoComplete="off"
             >
-                <Typography>
-                    {searchOutput.Title}
-                </Typography>
-                <Typography>
-                    {searchOutput.Year}
-                </Typography>
-                <Typography>
-                    {searchOutput.Rating}
-                </Typography>
-                <Typography>
-                    {searchOutput.BoxOffice}
-                </Typography>
-                {searchOutput.Title
-                    ? <Button type='submit' variant='contained'>
-                        Save
-                    </Button>
-                    : null
-                }
+                <Box>
+                    <Typography>
+                        {searchOutput.Title}
+                    </Typography>
+                    <Typography>
+                        {searchOutput.Year}
+                    </Typography>
+                    <Typography>
+                        {searchOutput.Rating}
+                    </Typography>
+                    <Typography>
+                        {searchOutput.BoxOffice}
+                    </Typography>
+                    {searchOutput.Title
+                        ? <Button type='submit' variant='contained'>
+                            Save
+                        </Button>
+                        : null
+                    }
+                </Box>
             </Box>
             {searchOutput.Title
                 ? <>
@@ -124,6 +140,13 @@ export default function SearchMovieForm() {
                     <Box
                         component="form"
                         onSubmit={handleTryAgain}
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            flexDirection: 'column',
+                        }}
+                        autoComplete="off"
                     >
                         <TextField
                             required

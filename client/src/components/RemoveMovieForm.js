@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 
-import { useQuery, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { REMOVE_MOVIE } from "../utils/mutations";
 
 
@@ -33,16 +33,26 @@ export default function RemoveMovieForm(props) {
         }
     }
 
+    if (!movies.length) {
+        return
+    }
+
     return (
         <Box
             component="form"
             sx={{
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
+                display: 'flex',
+                alignItems: 'flex-start',
+                flexDirection: 'column',
             }}
             noValidate
             autoComplete="off"
             onSubmit={handleRemove}
         >
+            <Typography variant="h4" component="div" gutterBottom>
+                Remove movie from graph
+            </Typography>
             <TextField
                 id="outlined-select-movie"
                 select
