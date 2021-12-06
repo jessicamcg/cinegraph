@@ -4,15 +4,16 @@ import { QUERY_MOVIES } from '../utils/queries';
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import {  useFilmContext } from "../utils/filmContext";
-import SearchMovieForm from "./SearchMovieForm";
+import Grid from "@mui/material/Grid";
 
+import { useFilmContext } from "../utils/filmContext";
 // import reducer from '../utils/reducers'
 
 import Auth from "../utils/auth";
 
 import RenderScatterChart from "./MovieChart";
 import RemoveMovieForm from "./RemoveMovieForm";
+import SearchMovieForm from "./SearchMovieForm";
 
 
 export default function Dashboard() {
@@ -38,8 +39,8 @@ export default function Dashboard() {
     // console.log(initialState,state);
     // },[state])
 
-    if (!Auth.getToken()) {
-        // checkthis
+    if (!Auth.loggedIn()) {
+
         return (
             <h4>
                 You need to be logged in to see this. Use the navigation links above to
@@ -54,17 +55,34 @@ export default function Dashboard() {
                 type:"test"
             })} */}
 
-            {console.log(initialState)}
-            <Typography variant="h2">dashboard</Typography>
-            {initialState
-                ? 
-                  <>
-                    <RenderScatterChart database={initialState} />
-                    <RemoveMovieForm database={initialState} />
-                  </>
-                : null
-            }
-            <SearchMovieForm />
+            {/* {console.log(initialState)} */}
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <Typography
+                        variant="h2"
+                        align="center"
+                    >
+                        Your Dashboard
+                    </Typography>
+                        </Grid>
+                {initialState
+                    ?
+                        <Grid item xs={12}>
+                            <RenderScatterChart database={initialState} />
+                        </Grid>
+                    :   null
+                }
+                <Grid item xs={6}>
+                    <SearchMovieForm />
+                </Grid>
+                {initialState
+                    ?
+                        <Grid item xs={6}>
+                            <RemoveMovieForm database={initialState} />
+                        </Grid>
+                    :   null
+                }
+            </Grid>
         </Box>
     );
 }

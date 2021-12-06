@@ -1,21 +1,36 @@
 import React, { useState } from "react";
+
 import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Auth from "../utils/auth";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_SEARCH_MOVIE, QUERY_SEARCH_MOVIE_AGAIN } from "../utils/queries";
 import { SAVE_MOVIE } from "../utils/mutations";
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function SearchMovieForm() {
     const [searchInput, setSearchInput] = useState('');
     const [searchOutput, setSearchOutput] = useState({});
-    const [saveMovie] = useMutation(SAVE_MOVIE);
-
     const [searchYear, setSearchYear] = useState('');
 
+    const [saveMovie] = useMutation(SAVE_MOVIE);
+
+    const [open, setOpen] = React.useState(false);
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+    };
+    
     const data = useQuery(QUERY_SEARCH_MOVIE, {
         variables: {
             query: searchInput
@@ -35,6 +50,7 @@ export default function SearchMovieForm() {
             setSearchOutput(data.data.movieData)
             setSearchYear('')
         } catch (e) {
+            setOpen(true);
             console.log(e);
         }
     };
@@ -56,19 +72,22 @@ export default function SearchMovieForm() {
 
             setSearchInput('')
             setSearchOutput('')
+            if (dataTryAgain && dataTryAgain.data.tryAgain !== searchYear) {
+                event.preventDefault();
+                setOpen(true);
+            }
         } catch (e) {
-            event.preventDefault();
             console.log(e);
         }
     }
 
     const handleTryAgain = async (event) => {
         event.preventDefault();
-
         try {
             setSearchOutput(dataTryAgain.data.tryAgain)
         } catch (e) {
             console.log(e);
+            setOpen(true);
         }
     }
 
@@ -77,6 +96,13 @@ export default function SearchMovieForm() {
             <Box
                 component="form"
                 onSubmit={handleSubmit}
+                sx={{
+                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    flexDirection: 'column',
+                }}
+                autoComplete="off"
             >
                 <Typography variant="h4" component="div" gutterBottom>
                     Search for a Movie
@@ -97,25 +123,34 @@ export default function SearchMovieForm() {
             <Box
                 component="form"
                 onSubmit={handleSave}
+                sx={{
+                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    flexDirection: 'column',
+                }}
+                autoComplete="off"
             >
-                <Typography>
-                    {searchOutput.Title}
-                </Typography>
-                <Typography>
-                    {searchOutput.Year}
-                </Typography>
-                <Typography>
-                    {searchOutput.Rating}
-                </Typography>
-                <Typography>
-                    {searchOutput.BoxOffice}
-                </Typography>
-                {searchOutput.Title
-                    ? <Button type='submit' variant='contained'>
-                        Save
-                    </Button>
-                    : null
-                }
+                <Box>
+                    <Typography>
+                        {searchOutput.Title}
+                    </Typography>
+                    <Typography>
+                        {searchOutput.Year}
+                    </Typography>
+                    <Typography>
+                        {searchOutput.Rating}
+                    </Typography>
+                    <Typography>
+                        {searchOutput.BoxOffice}
+                    </Typography>
+                    {searchOutput.Title
+                        ? <Button type='submit' variant='contained'>
+                            Save
+                        </Button>
+                        : null
+                    }
+                </Box>
             </Box>
             {searchOutput.Title
                 ? <>
@@ -125,6 +160,13 @@ export default function SearchMovieForm() {
                     <Box
                         component="form"
                         onSubmit={handleTryAgain}
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            flexDirection: 'column',
+                        }}
+                        autoComplete="off"
                     >
                         <TextField
                             required
@@ -134,11 +176,16 @@ export default function SearchMovieForm() {
                             onInput={(e) => setSearchYear(e.target.value)}
                         />
                         <Button type="submit" variant="contained">
-                            Search Year for {searchOutput.Title}
+                            Search Year for "{searchInput}"
                         </Button>
                     </Box>
                 </>
                 : null}
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical:'bottom',horizontal:'right' }}>
+                    <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                        Something went wrong...
+                    </Alert>
+                </Snackbar>
         </Box>
     )
 }
