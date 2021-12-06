@@ -21,6 +21,7 @@ export default function RemoveMovieForm(props) {
 
     const handleRemove = async (event) => {
         console.log(movie);
+        event.preventDefault();
 
         try {
             const remove = await removeMovie({
@@ -28,8 +29,8 @@ export default function RemoveMovieForm(props) {
                     imdbID: movie
                 }
             })
+            console.log(remove);
         } catch (e) {
-            event.preventDefault();
             console.log(e);
         }
     }
