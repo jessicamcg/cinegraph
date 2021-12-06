@@ -12,7 +12,6 @@ import { REMOVE_MOVIE } from "../utils/mutations";
 
 export default function RemoveMovieForm(props) {
     const movies = props.database.savedMovies
-    console.log(movies);
     const [removeMovie] = useMutation(REMOVE_MOVIE);
     const [movie, setMovie] = useState('');
 
@@ -21,13 +20,16 @@ export default function RemoveMovieForm(props) {
     };
 
     const handleRemove = async (event) => {
+        console.log(movie);
+
         try {
             const remove = await removeMovie({
                 variables: {
-                    imdbID: movie.imdbID
+                    imdbID: movie
                 }
             })
         } catch (e) {
+            event.preventDefault();
             console.log(e);
         }
     }
@@ -45,13 +47,12 @@ export default function RemoveMovieForm(props) {
             <TextField
                 id="outlined-select-movie"
                 select
-                label="Select"
+                label="Select movie to remove"
                 value={movie}
                 onChange={handleChange}
-                helperText="Select movie to remove"
             >
                 {movies.map((option) => (
-                    <MenuItem key={option.imdbID} value={option.Title}>
+                    <MenuItem key={option.imdbID} value={option.imdbID}>
                         {option.Title}
                     </MenuItem>
                 ))}
