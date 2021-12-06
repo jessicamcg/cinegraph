@@ -17,9 +17,19 @@ export default function RenderScatterChart(props) {
         cleanedBoxOffice = cleanedBoxOffice.replaceAll(",", "")
         return parseInt(cleanedBoxOffice)
     }
-    // const boxOfficeSort = (array) => {
-    //     let sortedArray = array.sort((a,b) => (a))
-    // }
+    const tickGenerator = (array) => {
+        let highestBoxOffice = 0
+        console.log(array[0])
+        for (let i = 0; i<array.length; i++) {
+            if (array[i].x > highestBoxOffice) {
+                highestBoxOffice = array[i].x
+            }
+        }
+        console.log("highestBO:", highestBoxOffice)
+        let rounded = Math.ceil(highestBoxOffice/100000000)*100000000
+        let segment = rounded/4
+        return [segment, segment*2, segment *3]
+    }
 
     const movieArray = props.database.savedMovies
     const graphData = movieArray.map((e) => ({x:boxOfficeCleaner(e.BoxOffice), y:ratingCleaner(e.Rating), name:e.Title}))
@@ -31,7 +41,7 @@ export default function RenderScatterChart(props) {
             margin={{ top: 20, right: 20, bottom: 10, left: 10 }}
         >
             <CartesianGrid strokeDasharray="4" />
-            <XAxis dataKey="x" name="Box Office" unit="USD" type="number" ticks={[250000000, 500000000, 750000000]}/>
+            <XAxis dataKey="x" name="Box Office" unit="USD" type="number" ticks={tickGenerator(graphData)}/>
             <YAxis dataKey="y" name="Rotten Tomatoes Score" unit="%" />
             {/* <ZAxis dataKey="z" range={[64, 144]} name="score" unit="km" /> */}
             <Tooltip cursor={{ strokeDasharray: "4" }} content="banana"/>
