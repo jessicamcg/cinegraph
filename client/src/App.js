@@ -15,6 +15,7 @@ import Home from "./pages/Home";
 import SignupForm from "./pages/SignupForm";
 import LoginForm from './pages/LoginForm';
 import Dashboard from './components/Dashboard';
+import Footer from './components/Footer'
 import "./styles/page-content.css"
 
 const httpLink = createHttpLink({
@@ -53,6 +54,7 @@ function App() {
             <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
         </Box>
+        <Footer/>
       </Router>
       </FilmProvider>
       </ApolloProvider>
