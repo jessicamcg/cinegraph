@@ -15,6 +15,7 @@ import Home from "./pages/Home";
 import SignupForm from "./pages/SignupForm";
 import LoginForm from './pages/LoginForm';
 import Dashboard from './components/Dashboard';
+import NoMatch from './pages/NoMatch'
 import Footer from './components/Footer'
 import "./styles/page-content.css"
 
@@ -52,6 +53,7 @@ function App() {
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/signup" component={SignupForm} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route component={NoMatch} />
           </Switch>
         </Box>
         <Footer/>
