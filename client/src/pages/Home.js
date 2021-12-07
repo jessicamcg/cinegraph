@@ -19,7 +19,7 @@ const Home = () => {
     });
     return (
         <ThemeProvider theme={theme}>
-            <Box>
+            <Box className="background">
                 <Box className="jumbotron hero">
                     <Container>
                     <Typography variant="h1" align="center" color="primary" className="hero-text">
