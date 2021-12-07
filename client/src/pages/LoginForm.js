@@ -30,10 +30,10 @@ export default function LoginForm() {
         <Box
             component="form"
             sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-                display: 'flex',
-                alignItems: 'flex-start',
-                flexDirection: 'column',
+                "& .MuiTextField-root": { m: 1, width: "25ch" },
+                display: "flex",
+                alignItems: "flex-start",
+                flexDirection: "column",
             }}
             noValidate
             autoComplete="off"

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_MOVIES } from "../utils/queries";
-import "../styles/dashboard.css"
+import "../styles/dashboard.css";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -18,10 +18,8 @@ import RemoveMovieForm from "./RemoveMovieForm";
 import SearchMovieForm from "./SearchMovieForm";
 
 export default function Dashboard() {
-
     const queryMovies = useQuery(QUERY_MOVIES);
     const initialState = queryMovies.data;
-
 
     const [state, setState] = useFilmContext();
     // const movieList = initialState.savedMovies;
