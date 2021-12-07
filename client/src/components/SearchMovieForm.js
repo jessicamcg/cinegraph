@@ -157,7 +157,11 @@ export default function SearchMovieForm() {
                         <Typography>{searchOutput.Rating}</Typography>
                         <Typography>{searchOutput.BoxOffice}</Typography>
                         {searchOutput.Title ? (
-                            <Button type="submit" variant="contained" color="secondary">
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="secondary"
+                            >
                                 Save
                             </Button>
                         ) : null}
@@ -186,7 +190,11 @@ export default function SearchMovieForm() {
                                 value={searchYear}
                                 onInput={(e) => setSearchYear(e.target.value)}
                             />
-                            <Button type="submit" variant="contained" color="secondary">
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="secondary"
+                            >
                                 Search Year for "{searchInput}"
                             </Button>
                         </Box>
