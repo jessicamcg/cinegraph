@@ -81,7 +81,7 @@ export default function RenderScatterChart(props) {
             {/* <ZAxis dataKey="z" range={[64, 144]} name="score" unit="km" /> */}
             <Tooltip cursor={{ strokeDasharray: "4" }} content={ChartTooltip} />
             <Legend verticalAlign="top" height={36} />
-            <Scatter name="Movies" data={graphData} fill="#8884d8" />
+            <Scatter name="Movies" data={graphData} fill="#087f23" />
         </ScatterChart>
     );
 }
