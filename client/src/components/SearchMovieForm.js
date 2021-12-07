@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 
 import Box from "@mui/material/Box";
-import Typography from '@mui/material/Typography';
+import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import { ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_MOVIES, QUERY_SEARCH_MOVIE, QUERY_SEARCH_MOVIE_AGAIN, QUERY_ME } from "../utils/queries";
+import {
+    QUERY_MOVIES,
+    QUERY_SEARCH_MOVIE,
+    QUERY_SEARCH_MOVIE_AGAIN,
+    QUERY_ME,
+} from "../utils/queries";
 import { SAVE_MOVIE } from "../utils/mutations";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -16,39 +23,52 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 export default function SearchMovieForm() {
-    const [searchInput, setSearchInput] = useState('');
+    const [searchInput, setSearchInput] = useState("");
     const [searchOutput, setSearchOutput] = useState({});
-    const [searchYear, setSearchYear] = useState('');
+    const [searchYear, setSearchYear] = useState("");
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: "#4caf50",
+            },
+            secondary: {
+                main: "#77d4d8",
+            },
+            info: {
+                main: "#000000",
+            },
+        },
+    });
 
     const [saveMovie] = useMutation(SAVE_MOVIE);
 
     const [open, setOpen] = React.useState(false);
     const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
+        if (reason === "clickaway") {
+            return;
         }
-    
+
         setOpen(false);
     };
-    
+
     const data = useQuery(QUERY_SEARCH_MOVIE, {
         variables: {
-            query: searchInput
-        }
+            query: searchInput,
+        },
     });
 
     const dataTryAgain = useQuery(QUERY_SEARCH_MOVIE_AGAIN, {
         variables: {
             query: searchInput,
-            queryYear: searchYear
-        }
-    })
+            queryYear: searchYear,
+        },
+    });
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            setSearchOutput(data.data.movieData)
-            setSearchYear('')
+            setSearchOutput(data.data.movieData);
+            setSearchYear("");
         } catch (e) {
             setOpen(true);
             console.log(e);
@@ -63,15 +83,15 @@ export default function SearchMovieForm() {
                     Rating: searchOutput.Rating,
                     BoxOffice: searchOutput.BoxOffice,
                     Year: searchOutput.Year,
-                    imdbID: searchOutput.imdbID
-                }
-            })
+                    imdbID: searchOutput.imdbID,
+                },
+            });
 
             // console.log(props.client)
             // props.dispatch({type:"test"})
 
-            setSearchInput('')
-            setSearchOutput('')
+            setSearchInput("");
+            setSearchOutput("");
             if (dataTryAgain && dataTryAgain.data.tryAgain !== searchYear) {
                 event.preventDefault();
                 setOpen(true);
@@ -79,113 +99,114 @@ export default function SearchMovieForm() {
         } catch (e) {
             console.log(e);
         }
-    }
+    };
 
     const handleTryAgain = async (event) => {
         event.preventDefault();
         try {
-            setSearchOutput(dataTryAgain.data.tryAgain)
+            setSearchOutput(dataTryAgain.data.tryAgain);
         } catch (e) {
             console.log(e);
             setOpen(true);
         }
-    }
+    };
 
     return (
-        <Box>
-            <Box
-                component="form"
-                onSubmit={handleSubmit}
-                sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    flexDirection: 'column',
-                }}
-                autoComplete="off"
-            >
-                <Typography variant="h4" component="div" gutterBottom>
-                    Search for a Movie
-                </Typography>
-                <TextField
-                    required
-                    id="search-movie-input"
-                    label="Movie"
-                    value={searchInput}
-                    onInput={(e) => setSearchInput(e.target.value)}
-                />
+        <ThemeProvider theme={theme}>
+            <Box>
+                <Box
+                    component="form"
+                    onSubmit={handleSubmit}
+                    sx={{
+                        "& .MuiTextField-root": { m: 1, width: "25ch" },
+                        display: "flex",
+                        alignItems: "flex-start",
+                        flexDirection: "column",
+                    }}
+                    autoComplete="off"
+                >
+                    <Typography variant="h4" component="div" gutterBottom>
+                        Search for a Movie
+                    </Typography>
+                    <TextField
+                        required
+                        id="search-movie-input"
+                        label="Movie"
+                        value={searchInput}
+                        onInput={(e) => setSearchInput(e.target.value)}
+                    />
 
-                <Button type="submit" variant="contained">
-                    Submit
-                </Button>
-
-            </Box>
-            <Box
-                component="form"
-                onSubmit={handleSave}
-                sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    flexDirection: 'column',
-                }}
-                autoComplete="off"
-            >
-                <Box>
-                    <Typography>
-                        {searchOutput.Title}
-                    </Typography>
-                    <Typography>
-                        {searchOutput.Year}
-                    </Typography>
-                    <Typography>
-                        {searchOutput.Rating}
-                    </Typography>
-                    <Typography>
-                        {searchOutput.BoxOffice}
-                    </Typography>
-                    {searchOutput.Title
-                        ? <Button type='submit' variant='contained'>
-                            Save
-                        </Button>
-                        : null
-                    }
+                    <Button type="submit" variant="contained" color="secondary">
+                        Submit
+                    </Button>
                 </Box>
-            </Box>
-            {searchOutput.Title
-                ? <>
-                    <Typography>
-                        Not the movie you're looking for?
-                    </Typography>
-                    <Box
-                        component="form"
-                        onSubmit={handleTryAgain}
-                        sx={{
-                            '& .MuiTextField-root': { m: 1, width: '25ch' },
-                            display: 'flex',
-                            alignItems: 'flex-start',
-                            flexDirection: 'column',
-                        }}
-                        autoComplete="off"
-                    >
-                        <TextField
-                            required
-                            id="search-year-input"
-                            label="Year"
-                            value={searchYear}
-                            onInput={(e) => setSearchYear(e.target.value)}
-                        />
-                        <Button type="submit" variant="contained">
-                            Search Year for "{searchInput}"
-                        </Button>
+                <Box
+                    component="form"
+                    onSubmit={handleSave}
+                    sx={{
+                        "& .MuiTextField-root": { m: 1, width: "25ch" },
+                        display: "flex",
+                        alignItems: "flex-start",
+                        flexDirection: "column",
+                    }}
+                    autoComplete="off"
+                >
+                    <Box>
+                        <Typography>{searchOutput.Title}</Typography>
+                        <Typography>{searchOutput.Year}</Typography>
+                        <Typography>{searchOutput.Rating}</Typography>
+                        <Typography>{searchOutput.BoxOffice}</Typography>
+                        {searchOutput.Title ? (
+                            <Button type="submit" variant="contained" color="secondary">
+                                Save
+                            </Button>
+                        ) : null}
                     </Box>
-                </>
-                : null}
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical:'bottom',horizontal:'right' }}>
-                    <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                </Box>
+                {searchOutput.Title ? (
+                    <>
+                        <Typography>
+                            Not the movie you're looking for?
+                        </Typography>
+                        <Box
+                            component="form"
+                            onSubmit={handleTryAgain}
+                            sx={{
+                                "& .MuiTextField-root": { m: 1, width: "25ch" },
+                                display: "flex",
+                                alignItems: "flex-start",
+                                flexDirection: "column",
+                            }}
+                            autoComplete="off"
+                        >
+                            <TextField
+                                required
+                                id="search-year-input"
+                                label="Year"
+                                value={searchYear}
+                                onInput={(e) => setSearchYear(e.target.value)}
+                            />
+                            <Button type="submit" variant="contained" color="secondary">
+                                Search Year for "{searchInput}"
+                            </Button>
+                        </Box>
+                    </>
+                ) : null}
+                <Snackbar
+                    open={open}
+                    autoHideDuration={6000}
+                    onClose={handleClose}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                >
+                    <Alert
+                        onClose={handleClose}
+                        severity="error"
+                        sx={{ width: "100%" }}
+                    >
                         Something went wrong...
                     </Alert>
                 </Snackbar>
-        </Box>
-    )
+            </Box>
+        </ThemeProvider>
+    );
 }

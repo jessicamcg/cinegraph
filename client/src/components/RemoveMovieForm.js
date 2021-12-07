@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import { ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
 import { useMutation } from "@apollo/client";
 import { REMOVE_MOVIE } from "../utils/mutations";
@@ -14,6 +16,19 @@ export default function RemoveMovieForm(props) {
     const movies = props.database.savedMovies
     const [removeMovie] = useMutation(REMOVE_MOVIE);
     const [movie, setMovie] = useState('');
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: "#4caf50"
+            },
+            secondary: {
+                main: "#77d4d8",
+            },
+            info: {
+                main: "#000000"
+            }
+        }
+    })
 
     const handleChange = (event) => {
         setMovie(event.target.value);
@@ -40,6 +55,7 @@ export default function RemoveMovieForm(props) {
     }
 
     return (
+        <ThemeProvider theme={theme}>
         <Box
             component="form"
             sx={{
@@ -68,10 +84,11 @@ export default function RemoveMovieForm(props) {
                     </MenuItem>
                 ))}
             </TextField>
-            <Button type="submit" variant="contained">
+            <Button type="submit" variant="contained" color="secondary">
                 Delete Movie
             </Button>
         </Box>
+        </ThemeProvider>
     );
     
 }
