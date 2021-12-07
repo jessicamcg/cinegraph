@@ -13,4 +13,5 @@ body,html {
 
 .hero {
     margin: auto;
+    display: flex;
 }

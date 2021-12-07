@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from '@mui/material/Card';
-import hero from '../assets/pexels-nathan-engel-436413.jpg'
+import hero from '../assets/hero-edited.jpg'
 import Auth from "../utils/auth";
 
 
@@ -20,7 +20,7 @@ const Home = () => {
             component = 'img'
             sx={{
                 maxWidth: 1600,
-                maxHeight: 1000,
+                maxHeight: 700,
             }}
             src= {hero}
             />
