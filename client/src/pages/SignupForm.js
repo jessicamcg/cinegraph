@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Typography from '@mui/material/Typography';
+import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 export default function SignupForm() {
     const [username, setUsername] = useState("");
@@ -24,16 +24,23 @@ export default function SignupForm() {
         });
         const token = mutationResponse.data.addUser.token;
         Auth.login(token);
-        console.log("Username:", username, "Email:", email, "Password:", password);
+        console.log(
+            "Username:",
+            username,
+            "Email:",
+            email,
+            "Password:",
+            password
+        );
     };
     return (
         <Box
             component="form"
             sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-                display: 'flex',
-                alignItems: 'flex-start',
-                flexDirection: 'column',
+                "& .MuiTextField-root": { m: 1, width: "25ch" },
+                display: "flex",
+                alignItems: "flex-start",
+                flexDirection: "column",
             }}
             noValidate
             autoComplete="off"
