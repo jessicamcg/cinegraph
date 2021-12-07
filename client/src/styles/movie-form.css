@@ -1,0 +1,14 @@
+.movie-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.section {
+    margin-bottom: 1.5rem;
+}
+.button {
+    margin: auto;
+    margin-top: 1rem;
+}
