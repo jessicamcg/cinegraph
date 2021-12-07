@@ -10,3 +10,13 @@ body,html {
     height:40px;
     margin-top: 50px;
 }
+
+.hero {
+    margin: auto;
+    display: flex;
+    border-width: 2px;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-top: 10px;
+}
