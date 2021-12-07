@@ -22,22 +22,9 @@ export default function Dashboard() {
     const initialState = queryMovies.data;
 
     const [state, setState] = useFilmContext();
-    // const movieList = initialState.savedMovies;
     useEffect(() => {
         setState({ ...state, movies: initialState });
     }, []);
-    // console.log(state)
-
-    // const [state, dispatch] = useReducer(reducer, initialState )
-    // const { initialState } = FilmProvider
-
-    // React.useEffect(()=>{
-    //     // dispatch({
-    //     //     type:"SAVE_MOVIE",
-    //     //     "payload":"test1"
-    //     // })
-    // console.log(initialState,state);
-    // },[state])
 
     if (!Auth.loggedIn()) {
         return (
