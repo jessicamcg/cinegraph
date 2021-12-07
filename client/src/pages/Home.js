@@ -21,12 +21,14 @@ const Home = () => {
         <ThemeProvider theme={theme}>
             <Box>
                 <Box className="jumbotron hero">
-                    <Typography variant="h1" align="center" color="primary">
+                    <Container>
+                    <Typography variant="h1" align="center" color="primary" className="hero-text">
                         Cinegraph
                     </Typography>
+                    </Container>
                 </Box>
                 <Container className="description">
-                    <Grid container spacing={2}>
+                    <Grid container spacing={4}>
                         <Grid item xs={4}>
                             <Card sx={{ minHeight: 155 }}>
                                 <Typography
