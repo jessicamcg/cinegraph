@@ -10,13 +10,13 @@ function Navbar() {
     const theme = createTheme({
         palette: {
             primary: {
-                main: "#4caf50",
+                main: "#1b5e20",
             },
             secondary: {
                 main: "#77d4d8",
             },
             info: {
-                main: "#000000",
+                main: "#ffffff",
             },
         },
     });

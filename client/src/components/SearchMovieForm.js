@@ -8,6 +8,7 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
+import "../styles/movie-form.css"
 
 import { useQuery, useMutation } from "@apollo/client";
 import {
@@ -113,7 +114,7 @@ export default function SearchMovieForm() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box>
+            <Box class="movie-form">
                 <Box
                     component="form"
                     onSubmit={handleSubmit}
@@ -124,6 +125,7 @@ export default function SearchMovieForm() {
                         flexDirection: "column",
                     }}
                     autoComplete="off"
+                    className="section"
                 >
                     <Typography variant="h4" component="div" gutterBottom>
                         Search for a Movie
@@ -136,7 +138,7 @@ export default function SearchMovieForm() {
                         onInput={(e) => setSearchInput(e.target.value)}
                     />
 
-                    <Button type="submit" variant="contained" color="secondary">
+                    <Button type="submit" variant="contained" color="secondary" className="button">
                         Submit
                     </Button>
                 </Box>
@@ -150,27 +152,29 @@ export default function SearchMovieForm() {
                         flexDirection: "column",
                     }}
                     autoComplete="off"
+                    className="section"
                 >
-                    <Box>
-                        <Typography>{searchOutput.Title}</Typography>
-                        <Typography>{searchOutput.Year}</Typography>
-                        <Typography>{searchOutput.Rating}</Typography>
-                        <Typography>{searchOutput.BoxOffice}</Typography>
+
+                        <Typography variant="h5">{searchOutput.Title}</Typography>
+                        <Typography>Year: {searchOutput.Year}</Typography>
+                        <Typography>Rating: {searchOutput.Rating}</Typography>
+                        <Typography>Box Office: {searchOutput.BoxOffice}</Typography>
                         {searchOutput.Title ? (
                             <Button
                                 type="submit"
                                 variant="contained"
                                 color="secondary"
+                                className="button"
                             >
                                 Save
                             </Button>
                         ) : null}
-                    </Box>
+
                 </Box>
                 {searchOutput.Title ? (
                     <>
                         <Typography>
-                            Not the movie you're looking for?
+                            Not the movie you were looking for? Try the correct year!
                         </Typography>
                         <Box
                             component="form"
@@ -182,6 +186,7 @@ export default function SearchMovieForm() {
                                 flexDirection: "column",
                             }}
                             autoComplete="off"
+                            className="section"
                         >
                             <TextField
                                 required
@@ -194,6 +199,7 @@ export default function SearchMovieForm() {
                                 type="submit"
                                 variant="contained"
                                 color="secondary"
+                                className="button"
                             >
                                 Search Year for "{searchInput}"
                             </Button>

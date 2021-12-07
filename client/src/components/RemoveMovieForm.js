@@ -10,6 +10,7 @@ import { createTheme } from "@mui/material/styles";
 
 import { useMutation } from "@apollo/client";
 import { REMOVE_MOVIE } from "../utils/mutations";
+import "../styles/movie-form.css"
 
 export default function RemoveMovieForm(props) {
     const movies = props.database.savedMovies;
@@ -63,6 +64,7 @@ export default function RemoveMovieForm(props) {
                 }}
                 autoComplete="off"
                 onSubmit={handleRemove}
+                className = "movie-form"
             >
                 <Typography variant="h4" component="div" gutterBottom>
                     Remove movie from graph
@@ -81,7 +83,7 @@ export default function RemoveMovieForm(props) {
                         </MenuItem>
                     ))}
                 </TextField>
-                <Button type="submit" variant="contained" color="secondary">
+                <Button type="submit" variant="contained" color="secondary" className="button">
                     Delete Movie
                 </Button>
             </Box>

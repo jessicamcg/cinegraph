@@ -9,7 +9,6 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 
 import { useFilmContext } from "../utils/filmContext";
-// import reducer from '../utils/reducers'
 
 import Auth from "../utils/auth";
 
@@ -22,22 +21,9 @@ export default function Dashboard() {
     const initialState = queryMovies.data;
 
     const [state, setState] = useFilmContext();
-    // const movieList = initialState.savedMovies;
     useEffect(() => {
         setState({ ...state, movies: initialState });
     }, []);
-    // console.log(state)
-
-    // const [state, dispatch] = useReducer(reducer, initialState )
-    // const { initialState } = FilmProvider
-
-    // React.useEffect(()=>{
-    //     // dispatch({
-    //     //     type:"SAVE_MOVIE",
-    //     //     "payload":"test1"
-    //     // })
-    // console.log(initialState,state);
-    // },[state])
 
     if (!Auth.loggedIn()) {
         return (
@@ -53,22 +39,28 @@ export default function Dashboard() {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Typography variant="h2" align="center">
-                        Your Dashboard
+                        Dashboard
                     </Typography>
                 </Grid>
                 {initialState ? (
-                    <Container>
+                    <Container className="graph">
                         <RenderScatterChart database={initialState} />
                     </Container>
                 ) : null}
+                <Grid container xs={12} className="form-wrapper">
                 <Grid item xs={6}>
+                    <Container>
                     <SearchMovieForm />
+                    </Container>
                 </Grid>
                 {initialState ? (
                     <Grid item xs={6}>
-                        <RemoveMovieForm database={initialState} />
+                        <Container>
+                        <RemoveMovieForm  database={initialState} />
+                        </Container>
                     </Grid>
                 ) : null}
+                </Grid>
             </Grid>
         </Box>
     );
